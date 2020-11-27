@@ -61,7 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  
+
   def smail
     UserMailer.with(user: current_user).welcome_email.deliver_now
   end

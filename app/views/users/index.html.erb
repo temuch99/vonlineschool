@@ -5,7 +5,7 @@
 
             <% @users.each do |user| %>
                 <!-- Single Popular Course -->
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="card mb-4 shadow-sm">
                         <div class="bd-placeholder-img card-img-top">
                             <% if user.avatar %>
@@ -15,7 +15,7 @@
                             <% end %>
                         </div>
                         <div class="card-body">
-                            <h4><%= "#{user.first_name} #{user.last_name}" %></h4>
+                            <p><strong><%= "#{user.first_name} #{user.last_name}" %></strong></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <%= button_to "Перейти", [user], method: :get, class: "btn btn-sm btn-outline-primary" %>
