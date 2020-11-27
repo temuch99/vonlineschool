@@ -3,13 +3,6 @@ class UsersController < BaseController
   	@user = User.find(params[:id])
   end
 
-  def smail
-    UserMailer.with(user: "porubenko99@mail.ru").welcome_email.deliver_now
-
-    @users = User.all
-    render "index"
-  end
-
   def index
   	# !!!!!!!Подумать, как вытащить только пользователей
   	@users = User.all
