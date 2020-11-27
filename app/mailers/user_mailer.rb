@@ -4,6 +4,6 @@ class UserMailer < ApplicationMailer
 	def welcome_email
 		@user = params[:user]
 		@url  = 'vonlineschool.ru'
-		mail(to: @user, subject: 'Welcome to My Awesome Site')
+		mail(to: @user.email, subject: 'Добро пожаловать на сайт')
 	end
 end
