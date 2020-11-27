@@ -6,6 +6,7 @@ class UsersController < BaseController
   def smail
     UserMailer.with(user: "porubenko99@mail.ru").welcome_email.deliver_now
 
+    @users = User.all
     render "index"
   end
 
