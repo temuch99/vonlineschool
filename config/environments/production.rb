@@ -71,6 +71,9 @@ Rails.application.configure do
   #   :domain  => 'vonlinecshool.ru'
   # }
 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.smtp_settings = {   
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,      
     :ssl => true,
