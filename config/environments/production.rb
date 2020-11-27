@@ -60,29 +60,39 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "vonlineschool_production"
-  # Rails.application.routes.default_url_options[:host] = 'vonlineschool.ru'
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => "vonlineschool.ru" }
-  # config.action_mailer.default_url_options = {:host => 'vonlinecshool.ru'}
-  config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :address => "185.20.225.128",
-  #   :port    => 25,
-  #   :domain  => 'vonlinecshool.ru'
+
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.default_url_options = { :host => "vonlineschool.ru" }
+  # # config.action_mailer.default_url_options = {:host => 'vonlinecshool.ru'}
+  # config.action_mailer.delivery_method = :smtp
+  # # config.action_mailer.smtp_settings = {
+  # #   :address => "185.20.225.128",
+  # #   :port    => 25,
+  # #   :domain  => 'vonlinecshool.ru'
+  # # }
+
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+
+  # config.action_mailer.smtp_settings = {   
+  #   :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,      
+  #   :ssl => true,
+  #   :enable_starttls_auto => true,  #this is the important stuff!
+  #   :domain         => 'vonlineschool.ru',
+  #   :authentication => :login,
+  #   :user_name      => 'temuch@vonlineschool.ru',
+  #   :password       => 'bander04log'
   # }
 
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i -t'
+  # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.smtp_settings = {   
-    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,      
-    :ssl => true,
-    :enable_starttls_auto => true,  #this is the important stuff!
-    :domain         => 'vonlineschool.ru',
-    :authentication => :login,
-    :user_name      => 'temuch@vonlineschool.ru',
-    :password       => 'bander04log'
-  }
+  config.action_mailer.default_options = {from: 'temuch@vonlineshool.ru'}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

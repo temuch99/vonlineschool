@@ -3,19 +3,18 @@
     <div class="container">
         <div class="row">
 
-            <% @courses.each do |c| %>
+            <% @users.each do |user| %>
                 <!-- Single Popular Course -->
                 <div class="col-md-6">
                     <div class="card mb-4 shadow-sm">
                         <div class="bd-placeholder-img card-img-top">
-                            <%= image_tag c.image.url %>
+                            <%= image_tag user.avatar.url %>
                         </div>
                         <div class="card-body">
-                            <h4><%= c.title %></h4>
-                            <p class="card-text"><%= c.description %></p>
+                            <h4><%= "#{user.first_name} #{user.last_name}" %></h4>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <%= button_to "Перейти", [c], method: :get, class: "btn btn-sm btn-outline-primary" %>
+                                    <%= button_to "Перейти", [user], method: :get, class: "btn btn-sm btn-outline-primary" %>
                                 </div>
                             </div>
                         </div>
