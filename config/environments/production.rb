@@ -63,7 +63,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   # config.action_mailer.default_url_options = { :host => "vonlineschool.ru" }
-  config.action_mailer.default_url_options = {:host => 'vonlinecshool.ru'}
+  # config.action_mailer.default_url_options = {:host => 'vonlinecshool.ru'}
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   :address => "185.20.225.128",
@@ -78,12 +78,10 @@ Rails.application.configure do
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,      
     :ssl => true,
     :enable_starttls_auto => true,  #this is the important stuff!
-    :address        => '185.20.225.128',
-    :port           => 25,
     :domain         => 'vonlineschool.ru',
-    :authentication => :plain,
-    :user_name      => 'frantenko@vonlineschool.ru',
-    :password       => 'rfhnbyf1'
+    :authentication => :login,
+    :user_name      => 'temuch@vonlineschool.ru',
+    :password       => 'bander04log'
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
