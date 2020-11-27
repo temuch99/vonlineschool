@@ -20,7 +20,7 @@ production:
   adapter: postgresql
   host: localhost
   port: 5432
-  database: vonlineschool
+  database: vschool
   user: temuch
   password: bander04log
   connect_timeout: 2
