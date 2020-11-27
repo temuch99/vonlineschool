@@ -1,0 +1,35 @@
+<header class="header-area mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <% #link_to "Онлайн-школа", root_path %>
+        <a href="#" style="display: block; position: relative;"> 
+          <img src="<%= root_url %>/img/core-img/logo.jpg" alt="logo" style="width: 100px; background-color:rgba(0,0,0,.3);">
+          <span class="img__mask" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5);  opacity: 0.05;"><i class="img__icon"></i></span>
+        </a>
+        
+        <!-- Nav Start -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <% @header.each do |item, options| %>
+                    <li class="nav-item <%= options[:active] ? 'active' : '' %>">
+                        <%= link_to options[:name], options[:path], class: "nav-link" %>
+                    </li>
+                <% end %>
+            </ul>
+            <% unless current_user %>
+                <div class="register-login-area d-flex justify-content-around">
+                    <%= link_to "Зарегистрироваться", new_user_registration_path, class: "nav-link"  %>
+                    <%= link_to "Войти", new_user_session_path, class: "nav-link"  %>
+                </div>
+            <% else %>
+                <div class="register-login-area d-flex justify-content-around">
+                    <%= link_to "Профиль", [current_user], class: "nav-link btn"  %>
+                    <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "nav-link btn" %>
+                </div>
+            <% end %>
+            <!-- Nav End -->
+        </div>
+    </nav>
+</header>

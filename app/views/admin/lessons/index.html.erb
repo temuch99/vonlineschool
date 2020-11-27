@@ -1,0 +1,17 @@
+<h3 class="float-left">Уроки</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Позиция</th>
+			<th>Название</th>
+			<th>Курс</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody class="lessons_sortable" data-update-url="<%= admin_api_lessons_mass_update_url %>">
+		<%= render partial: 'lesson', collection: @lessons.order(position: :desc) %>
+	</tbody>
+</table>
+<%= link_to 'Добавить занятие', [:new, :admin, @course, :lesson], class: 'btn btn-success' %>
+<%= paginate @lessons, theme: "twitter-bootstrap-4" %>

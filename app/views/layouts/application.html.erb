@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Onlineschool</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="spinner"></div>
+    </div>-->
+
+    <%= render 'shared/header' %>
+    <div class="container" style="min-height: 500px;">
+      <div class="row breadcrumbs">
+        <div class="col-md-12">
+          <ol class="breadcrumb">
+            <%= render_breadcrumbs tag: :li, separator: ' / ' %>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

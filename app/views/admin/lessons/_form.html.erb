@@ -1,0 +1,16 @@
+<%= simple_form_for [:admin, @course, @lesson], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
+	<%= f.input :title %>
+	<%= f.input :description %>
+	<%= f.input :video_lection %>
+	<%= f.input :text_lection, as: :file %>
+	<%= f.input :survey_size %>
+	<h6 class="">В это поле вставляйте только сами ссылки, через пробел или перенос строки</h6>
+	<%= f.input :lection_links %>
+	<%= f.input :survey_duration %>
+	<%= f.input :attempts %>
+	<div></div>
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		<%= link_to "Назад", [:admin, @course, :lessons], class: "btn btn-danger" %>
+	</div>
+<% end %>

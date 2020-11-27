@@ -1,0 +1,51 @@
+<!-- ##### Single Course Intro Start ##### -->
+<div class="single-course-intro d-flex align-items-center justify-content-center" style="background-image: url(<%= @course.image.url %>);background-repeat:no-repeat; background-size: cover;">
+    <!-- Content -->
+    <div class="single-course-intro-content text-center">
+        <!-- Ratings -->
+        <h3><%= @course.title %></h3>
+    </div>
+</div>
+<div class="single-course-content section-padding-100">
+    <div class="container">
+        <div class="row">
+            <!-- ##### Single Course Intro End ##### -->
+            <div class="col-12 col-lg 8">
+                <div class="clever-description">
+
+                    <!-- About Course -->
+                    <div class="about-course mb-30">
+                        <h4>О нашем курсе</h4>
+                        <p><%= @course.description %></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-lg-4">
+                <div class="course-sidebar">
+                    <!-- Buy Course -->
+                    <!-- если есть доступ - одно, если нет - другое-->
+                    <%= link_to "Перейти к занятиям", [@course, :lessons], class: "btn clever-btn mb-30 w-100" %>
+
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+                        <h4>Сведения о курсе</h4>
+                        <ul class="features-list">
+                            <li>
+                                <h6><i class="fa fa-bell" aria-hidden="true"></i> Количество занятий</h6>
+                                <h6><%= @course.lessons.count %></h6>
+                            </li>
+                            <li>
+                                <h6><i class="fa fa-file" aria-hidden="true"></i> Количество тестов</h6>
+                                <h6><%= @course.lessons.count %></h6>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ##### Courses Content End ##### -->
+        </div>
+    </div>
+</div>

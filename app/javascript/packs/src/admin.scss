@@ -1,0 +1,79 @@
+@import "bootstrap/scss/bootstrap";
+
+
+#lessons_sortable .handle {
+	font-size: 12px;
+ 	color: #777;
+  	cursor: move;
+}
+
+.button-box {
+	.btn { 
+		margin-left: 10px;
+	}
+}
+
+.breadcrumbs {
+	margin: 10px 0 10px 0;
+	font-size: 18px;
+}
+
+.sections > div > div {
+	margin: 10px 0;
+}
+
+tr.lesson {
+	background-color: white !important;
+}
+
+tr.section {
+	background-color: #218838 !important;
+}
+
+.alert-alert {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-notice {
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+}
+
+td, tr {
+	text-align: center;
+}
+
+.fileinput-wrapper {
+    display: block;
+}
+.fileinput {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+.fileinput input[type=file],
+.fileinput input[type=file]:focus,
+.fileinput input[type=file]:hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+    outline: 0;
+}
+.fileinput-name {
+    margin-left: 8px;
+}
+.fileinput-name .close {
+    float: none;
+    margin-left: 8px;
+    vertical-align: middle;
+}

@@ -1,0 +1,5 @@
+<p>Добро пожаловать <%= @email %>!</p>
+
+<p>Перейдите по ссылке ниже, чтобы активировать аккаунт:</p>
+
+<p><%= link_to 'Активировать', confirmation_url(@resource, confirmation_token: @token) %></p>

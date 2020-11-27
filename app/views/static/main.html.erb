@@ -1,0 +1,169 @@
+<!-- ##### Hero Area Start ##### -->
+<section class="hero-area bg-img bg-overlay-2by5" style="background-image: url(img/bg-img/bg1.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <!-- Hero Content -->
+                <div class="hero-content text-center">
+                    <h2 style="color: white; -webkit-text-stroke: 1.5px #2c56df; font-size: 45px;"><!--span style="background: #2c56df; border-radius: 10px; padding: 5px; opacity: 0.9;" -->Онлайн-школа</span><br/><!--span style="background: #2c56df; border-radius: 10px; padding: 5px;opacity: 0.9" --> Натальи Франтенко</span></h2>
+                    <%= link_to "Начать", new_user_registration_path, class: "btn clever-btn" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Hero Area End ##### -->
+
+<!-- ##### Popular Courses Start ##### -->
+<section class="popular-courses-area section-padding-100-0" style="background-image: url(img/core-img/texture.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>Дисциплины нашей онлайн-школы</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <% Course.take(2).each do |course| %>
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <!--<img src="img/bg-img/c1.jpg" alt="">-->
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <h4 style="text-align: center;"><%= course.title %></h4>
+                        </div>
+                        <!-- Seat Rating Fee -->
+                        <div class="seat-rating-fee d-flex justify-content-between">
+                            <div class="course-fee h-100 w-100">
+                                <%= link_to "Перейти", [course], class: "free w-100" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+    </div>
+</section>
+<!-- ##### Popular Courses End ##### -->
+
+<!-- ##### Best Tutors Start ##### -->
+<section class="best-tutors-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>Наши преподаватели</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                <% User.take(4).each do |teacher| %>
+                    <!-- Single Tutors Slide -->
+                    <div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
+                        <!-- Tutor Thumbnail -->
+                        <div>
+                            <div class="tutor-thumbnail d-flex justify-content-center" style="height: 200px; width: 200px;">
+                                <img src="img/core-img/user.png" width="100%" height="100%" style="object-fit: cover;">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="text-center">
+                                <h5><%= "#{teacher.email}" %></h5>
+                                <span>Преподаватель</span>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Best Tutors End ##### -->
+
+<!-- ##### Register Now Start ##### -->
+<section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url(img/core-img/texture.png);">
+    <!-- Register Contact Form -->
+    <div class="register-contact-form mb-100 wow fadeInUp" data-wow-delay="250ms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="forms">
+                        <h4>Зарегистрироваться</h4>                        
+                        <%= simple_form_for(@user, url: new_user_registration_path) do |f| %>
+                            <div class="row">
+                                <div class="errors">
+                                    <%= f.error_notification %>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+                                        <%= f.input :first_name,
+                                        required: true,
+                                        class: "form-control" %>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group">
+                                        <%= f.input :last_name,
+                                        class: "form-control",
+                                        required: true %>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <div class="form-group">
+                                        <%= f.input :email,
+                                        class: 'form-control',
+                                        required: true,
+                                        input_html: { autocomplete: "email" }%>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                  <div class="form-group">
+                                      <%= f.input :parent_email,
+                                      class: 'form-control',
+                                      required: true,
+                                      input_html: { autocomplete: "parent_email" }%>
+                                  </div>
+                              </div>
+                                <div class="col-12 col-lg-12">
+                                    <div class="form-group">
+                                        <%= f.input :password,
+                                        required: true,
+                                        class: "form-control",
+                                        hint: ("Не короче #{@minimum_password_length} символов" if @minimum_password_length),
+                                        input_html: { autocomplete: "new-password" } %>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <div class="form-group">
+                                        <%= f.input :password_confirmation,
+                                        required: true,
+                                        class: "form-control",
+                                        input_html: { autocomplete: "new-password" } %>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <%= f.button :submit, "Зарегистрироваться", class: "btn clever-btn w-100" %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Now Countdown -->
+    <div class="register-now-countdown mb-100 wow fadeInUp" data-wow-delay="500ms">
+        <h3>Зарегистрироваться сейчас</h3>
+        <!-- Register Countdown -->
+    </div>
+</section>
+<!-- ##### Register Now End ##### -->

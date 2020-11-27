@@ -1,0 +1,14 @@
+<%= form_with url: [@course, @lesson, @survey_attempt, @question], method: :patch do |f| %>
+	<div class="form-group">
+		<div class="col-12">
+			<label for="answer">Ваш ответ:</label>
+			<%= text_field(:survey_answer, :answer, class: "form-control") %>
+			<% #hidden_field(:question, :id) %>
+		</div>
+	</div>
+
+	<div class="button-box">
+		<%= f.submit "Ответить", class: 'btn btn-primary' %>
+	</div>
+<% end %>
+<%= button_to "Закончить прохождение теста", [@course, @lesson, @survey_attempt], method: :delete, class: "btn btn-success mt-3" %>

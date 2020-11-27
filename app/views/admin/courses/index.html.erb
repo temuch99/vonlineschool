@@ -1,0 +1,16 @@
+<h3 class="float-left">Курсы</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Название</th>
+			<th>Изображение</th>
+			<th>Описание</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @courses %>
+	</tbody>
+</table>
+<%= link_to "Добавить новый курс", new_admin_course_path, class: "btn btn-success" %>
+<%= paginate @courses, theme: "twitter-bootstrap-4" %>

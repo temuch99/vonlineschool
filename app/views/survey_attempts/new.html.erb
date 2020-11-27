@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-12">
+		<h2>Тестирование по теме урока <%= @lesson.title %></h2>
+		<h4>Время на прохождение тестирования: <%= @lesson.survey_duration %> мин.</h4>
+		<h4>Количество вопросов: <%= @lesson.survey_size %></h4>
+		<% if @survey_attempt %>
+			<%= button_to "Продолжить прохождени теста", [@course, @lesson, @survey_attempt, :questions], method: :get, class: "btn btn-success" %>
+		<% else %>
+			<%= button_to "Начать тест", [@course, @lesson, :survey_attempts], class: "btn btn-success" %>
+		<% end %>
+	</div>
+</div>

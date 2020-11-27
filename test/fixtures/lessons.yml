@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  lection: MyString
+  lection_links: MyText
+  survey_size: 1
+  description: MyText
+  survey_duration: 1
+  section: one
+
+two:
+  title: MyString
+  lection: MyString
+  lection_links: MyText
+  survey_size: 1
+  description: MyText
+  survey_duration: 1
+  section: two

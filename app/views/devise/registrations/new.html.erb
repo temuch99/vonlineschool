@@ -1,0 +1,46 @@
+<h2>Зарегистрироваться</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Email" }%>
+      </div>
+      <div class="col-md-6 col-12">
+        <%= f.input :parent_email,
+                required: true,
+                input_html: { autocomplete: "Email родителей" } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <%= f.input :first_name,
+                required: true,
+                input_html: { autocomplete: "Имя" } %>
+      </div>
+      <div class="col-md-6 col-12">
+        <%= f.input :last_name,
+                required: true,
+                input_html: { autocomplete: "Фамилия" } %>
+      </div>
+    </div>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "Новый пароль" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "Новый пароль" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Зарегистрироваться", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

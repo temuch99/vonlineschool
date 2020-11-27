@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: vonlineschool
+  pool: 5
+  timeout: 5000
+  username: temuch
+  password: bander04log
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: vonlineschool_test
+  pool: 5
+  timeout: 5000
+  username: temuch
+  password:
+
+production:
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  database: vonlineschool
+  user: temuch
+  password: bander04log
+  connect_timeout: 2
+  checkout_timeout: 5
+  variables:
+    statement_timeout: 5000

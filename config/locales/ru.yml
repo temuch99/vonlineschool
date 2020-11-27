@@ -1,0 +1,76 @@
+ru:
+  activerecord:
+    models:
+      admin: "Преподаватель"
+      answer: "Ответ"
+      attempt: "Попытка решения теста"
+      course: "Курс"
+      discipline: "Предмет"
+      exam_attempt: "Попытка решения очного теста"
+      exam: "Очный тест"
+      exercise_answer: "Ответ на задание"
+      exercise: "Задание"
+      homework_attempt: "Попытка решения домашнего задания"
+      homework: "Домашнее задание"
+      lesson: "Урок"
+      question: "Вопрос"
+      section: "Секция"
+      survey: "Тест"
+      user: "Пользователь"
+    attributes:
+      admin:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        description: "Информация"
+        avatar: "Аватар"
+      answer:
+        value: "Ответ"
+      attempt:
+        result: "Результат"
+      course:
+        title: "Название"
+        description: "Описание"
+        image: "Изображение"
+        teacher: "Преподаватель"
+        discipline: "Предмет"
+      exam_attempt:
+        result: "Результат"
+        user: "Ученик"
+        exam: "Название очного теста"
+      exam:
+        title: "Название"
+        max_result: "Количество заданий"
+      exercise_answer:
+        value: "Ответ"
+      exercise:
+        exercise_text: "Задание"
+      homework_attempts:
+        result: "Ответ"
+      homework:
+        title: "Заголовок"
+        description: "Описание"
+      lesson:
+        title: "Название"
+        description: "Описание"
+        text_lection: "Текстовая лекция"
+        video_lection: "Видео лекция"
+        lection_links: "Полезные ссылки"
+        survey_duration: "Продолжительность теста"
+        survey_size: "Количество вопросов в тесте"
+      question:
+        task: "Вопрос"
+        correct_answer: "Правильный ответ"
+      user:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        email: "Email"
+        parent_email: "Email Родителей"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+
+
+
+

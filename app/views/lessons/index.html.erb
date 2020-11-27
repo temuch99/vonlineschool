@@ -1,0 +1,17 @@
+<h2 style="text-align:center;">Разделы занятий</h2>
+<div class="single-course-content section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="accordions col-12" id="accordion" role="tablist" aria-multiselectable="true">
+                <% @lessons.each do |lesson| %>
+                    <div class="page-content">
+                        <h6>Название занятия: <%= lesson.title %></h6>
+                        <p><b>Описание:</b> <%= lesson.description.html_safe %></p>
+                        <%= button_to "Перейти", [@course, lesson], method: :get, class: "btn btn-info" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <%= paginate @lessons, theme: "twitter-bootstrap-4" %>
+</div>

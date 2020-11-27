@@ -1,0 +1,60 @@
+<h2>Редактировать <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Ждем подтверждения аккаунта: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Email" }%>
+      </div>
+      <div class="col-md-6 col-12">
+        <%= f.input :parent_email,
+                required: true,
+                input_html: { autocomplete: "Email родителей" } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <%= f.input :first_name,
+                required: true,
+                input_html: { autocomplete: "Имя" } %>
+      </div>
+      <div class="col-md-6 col-12">
+        <%= f.input :last_name,
+                required: true,
+                input_html: { autocomplete: "Фамилия" } %>
+      </div>
+    </div>
+    <%= f.input :password,
+                hint: "Оставьте это поле незаполненным, если не хотите изменять пароль",
+                required: false,
+                input_html: { autocomplete: "Новый пароль" } %>
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "Новый пароль" } %>
+    <%= f.input :current_password,
+                hint: "Необходим Ваш текущий пароль, чтобы изменения вступили в силу",
+                required: true,
+                input_html: { autocomplete: "Текущий пароль" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Обновить", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<h3>Удалить аккаунт</h3>
+
+<p>Недовольны? <%= link_to "Удалить аккаунт", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete, class: "btn btn-danger" %></p>
+
+<%= link_to "Назад", :back %>

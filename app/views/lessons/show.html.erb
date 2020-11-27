@@ -1,0 +1,101 @@
+<h2 style="text-align: center;"><%= @lesson.title %></h2>
+<!-- ##### Courses Content Start ##### -->
+<div class="single-course-content section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="course--content">
+
+                    <div class="clever-tabs-content">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="tab--1" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false">Описание</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true">Лекция</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--3" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true">Тест</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" id="tab--4" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Д/З</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--5" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="true">Очный тест</a>
+                            </li> -->
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+                                <div class="clever-description">
+                                    <%= render "description", lesson: @lesson %>
+                                </div>
+                            </div>
+
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                <div class="clever-curriculum">
+                                    <%= render "lection", lesson: @lesson %>
+                                </div>
+                            </div>
+ 
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+                                <div class="clever-review">
+                                    <!-- Survey Link -->
+                                    <div class="about-review mb-30">
+                                        <% if !@is_survey %>
+                                            <h4>Тест по данному уроку еще не готов</h4>
+                                        <% elsif @has_attempts %>
+                                            <h4>Пройти тест по пройденному материалу</h4>
+                                            <div class="border border-left-0 border-right-0 p-3">
+                                                <%= button_to "Перейти к тестированию", [:new, @course, @lesson, :survey_attempt], method: :get, class: "btn btn-info" %>
+                                            </div>
+                                            <h5>На прохождение этого теста Вам доступно попыток: <%= @lesson.attempts %></h5>
+                                            <h5>Вы использовали попыток: <%= @count_user_attempts %></h5>
+                                        <% else %>
+                                            <h4>Все попытки потрачены</h4>
+                                        <% end %>
+                                    </div>
+
+                                    <% if @done_attempts %>
+                                        <%= render "survey_result", attempts: @user_attempts %>
+                                    <% end %>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="course-sidebar">
+
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+                        <h4>Сведения о занятии</h4>
+                        <ul class="features-list">
+                            <li>
+                                <h6><i class="fa fa-bell" aria-hidden="true"></i> Количество занятий</h6>
+                                <h6><%= @course.lessons.count %></h6>
+                            </li>
+                            <li>
+                                <h6><i class="fa fa-file" aria-hidden="true"></i> Количество тестов</h6>
+                                <h6><%= @course.lessons.count %></h6>
+                            </li>
+                            <li>
+                                <h6><%= button_to "Вернуться к выбору занятия", [@discipline, @course, :lessons], method: :get, class: "btn btn-success p-1" %></h6>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Courses Content End ##### -->

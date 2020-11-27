@@ -1,0 +1,28 @@
+<!-- About Curriculum -->
+<div class="about-curriculum mb-30">
+    <h4>Лекция</h4>
+    <% if lesson.video_lection != "" %>
+        <div><iframe width="100%" height="400px;" src="<%= @lesson.video_lection.html_safe %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <% else %>
+        <div>Видео-лекция отсутствует</div>
+    <% end %>
+</div>
+
+<!-- Curriculum Level -->
+<div class="curriculum-level mb-30">
+    <% if lesson.text_lection? %>
+        <h4>Текстовая лекция</h4>
+        <p><%= link_to "Скачать лекцию по уроку #{lesson.title}", lesson.text_lection.url, style: "text-decoration: underline; color: blue;" %></p>
+    <% else %>
+        <p>Текстовая лекция отсутствует</p>
+    <% end %>
+</div>
+
+<% if lesson.lection_links? %>
+    <h4>Полезные ссылки</h4>
+    <div class="curriculum-level mb-30">
+        <% lesson.lection_links.split.each_with_index do |link, index| %>
+            <p><%= link_to "Ссылка #{index + 1}", link, style: "text-decoration: underline" %></p>
+        <% end %>
+    </div>
+<% end %>
