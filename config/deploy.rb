@@ -22,7 +22,7 @@ set :assets_roles, [:USER]
 # set :nvm_type, :user # or :system, depends on your nvm setup
 # set :nvm_map_bins, %w{node npm yarn}
 
-# append :linked_files, "config/database.yml"
+append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", ".bundle", "node_modules", "public/packs"
