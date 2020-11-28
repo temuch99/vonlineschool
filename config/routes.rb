@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 			resources :survey_attempts, only: [:new, :create, :show, :destroy] do
 				resources :questions, except: :new
 			end
+
+			#homeworks
+			resources :homeworks, only: [:new, :create]
 		end
 	end
 

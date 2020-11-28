@@ -1,0 +1,28 @@
+<% if lesson.homework? %>
+    <!-- About Review -->
+    <% if !current_user.homework_attempts.where(lesson_id: lesson.id).any? %>
+        <div class="about-review mb-30">
+            <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
+            <div class="border border-left-0 border-right-0 p-3">
+                <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
+            </div>
+        </div>
+    <% else %>
+        <div class="clever-ratings d-flex align-items-center mb-30">
+            <div class="rating-viewer">
+                <!-- Rating -->
+                <h5>Количество баллов, набранных в домашнем задании: </h5>
+                <% ha = current_user.homework_attempts.where(lesson_id: lesson.id).first %>
+                <% if ha.checked %>
+                    <span style="font-size: 40px;"><b><%= "#{ha.result}" %></b></span>
+                <% else %>
+                    <span style="font-size: 20px;"><b>Задание еще не проверено</b></span>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    <div class="about-review mb-30">
+        <h4>По данному уроку отсутствует домашнее задание</h4>
+    </div>
+<% end %>

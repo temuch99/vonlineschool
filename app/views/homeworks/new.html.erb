@@ -1,0 +1,21 @@
+<%= form_with(url: [@course, @lesson, :homeworks]) do |f| %>
+    <div class="form-group">
+        <h5>Условие</h5>
+        <div class="сol-12">
+            <% if @lesson.homework %>
+                <a href="<%= @lesson.homework.url %>" download="<%= "задание" %>">Домашнее задание</a>
+            <% else %>
+                <p>Домашнее задание отсутствует</p>
+            <% end %>
+
+        </div>
+        <div class="col-12">
+            <label for="answer">Ваши сканы:</label>
+            <%= f.file_field :answer, multiple: true, class: "w-50 mt-3" %>
+        </div>
+    </div>
+
+    <div class="button-box">
+        <%= f.submit "Ответить", class: 'btn btn-primary' %>
+    </div>
+<% end %>

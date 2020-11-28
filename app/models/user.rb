@@ -8,6 +8,7 @@ class User < ApplicationRecord
 	has_many :users_roles, dependent: :destroy
 	has_many :roles, through: :users_roles
 	has_many :survey_attempts, dependent: :destroy
+	has_many :homework_attempts, dependent: :destroy
 
 	def create_role
 		self.roles << Role.find_by_name(:user)

@@ -17,10 +17,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="tab--3" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true">Тест</a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" id="tab--4" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Д/З</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="tab--5" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="true">Очный тест</a>
                             </li> -->
                         </ul>
@@ -65,6 +65,12 @@
                                 </div>
                             </div>
 
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab--4">
+                                <div class="clever-review">
+                                    <%= render "homework", lesson: @lesson %>
+                                </div>
+                            </div>
 
 
                         </div>
