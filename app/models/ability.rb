@@ -8,6 +8,10 @@ class Ability
     if user.is_admin?
         can :manage, :all
     end
+
+    if user.id?
+        can :manage, User, id: user.id
+    end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

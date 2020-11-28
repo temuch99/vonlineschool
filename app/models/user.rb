@@ -13,9 +13,8 @@ class User < ApplicationRecord
 		self.roles << Role.find_by_name(:user)
 	end
 
-	def kill
-		self.users_roles.destroy_all
-		self.destroy
+	def is_user?
+		self.roles.exists?(name: :user)
 	end
 
 	def is_admin?

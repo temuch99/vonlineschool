@@ -31,7 +31,7 @@
     </div>
     <%= f.input :password,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                hint: ("Пароль должен содержать больше #{@minimum_password_length} символов" if @minimum_password_length),
                 input_html: { autocomplete: "Новый пароль" } %>
     <%= f.input :password_confirmation,
                 required: true,

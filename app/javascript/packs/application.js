@@ -18,3 +18,4 @@ import "bootstrap";
 // import 'cocoon-js'
 import './src/application.scss';
 
+require("chart.js");
