@@ -10,7 +10,8 @@ class Admin::AdminController < ApplicationController
 	private
 	def set_header
 		@header = { 
-			courses: { name: 'Курсы', path: admin_courses_path }
+			courses: { name: 'Курсы', path: admin_courses_path },
+			homeworks: { name: "Д/З", path: admin_homework_attempts_path }
 		}
 	end
 

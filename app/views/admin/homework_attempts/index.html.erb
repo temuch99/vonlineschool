@@ -1,0 +1,31 @@
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#name").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#table tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
+</script> 
+<div class="row">
+	<div class="col-3 mb-3">
+		<h4>Поиск</h4>
+		<input type="text" id="name" class="form-control">
+	</div>
+</div>
+
+<h3>Домашние задания ваших учеников</h3>
+<table class="table table-striped" id="table">
+	<% HomeworkAttempt.where(checked: false).each do |attempt| %>
+		<tr>
+			<td>
+				<%= link_to "#{attempt.lesson.course.title}/#{attempt.lesson.title}", [:admin, attempt] %>
+        	</td>
+			<td>
+				<%= link_to "#{attempt.user.first_name} #{attempt.user.last_name}", [attempt.user] %>
+			</td>
+    	</tr>
+	<% end %>
+</table>

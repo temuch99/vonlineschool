@@ -21,7 +21,14 @@ class QuestionsController < BaseController
 											  survey_attempt_id: @survey_attempt.id)
 		if @survey_answer.update(survey_answer_params)
 			# выбрать следующий вопрос
-			redirect_to [@course, @lesson, @survey_attempt]
+			question = @survey_answer.question
+			q_index = @survey_attempt.questions.index(question)
+			if q_index + 1 < @survey_attempt.questions.count
+				next_question = @survey_attempt.questions[q_index + 1]
+				redirect_to [:edit, @course, @lesson, @survey_attempt, next_question]
+			else
+				redirect_to [@course, @lesson, @survey_attempt]
+			end
 		else
 			flash.now[:alert] = "Ответ на вопрос не удалось сохранить"
 			render 'edit'

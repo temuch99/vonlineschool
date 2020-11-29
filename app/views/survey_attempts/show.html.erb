@@ -15,4 +15,4 @@
 	</tbody>
 </table>
 
-<%= button_to "Закончить прохождение теста", [@course, @lesson, @survey_attempt], method: :delete, class: "btn btn-success" %>
+<%= button_to "Закончить прохождение теста", [@course, @lesson, @survey_attempt], data: {confirm: "Вы уверены, что хотите закончить попытку?"}, method: :delete, class: "btn btn-success" %>

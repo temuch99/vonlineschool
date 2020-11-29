@@ -52,7 +52,7 @@
                                             <div class="border border-left-0 border-right-0 p-3">
                                                 <%= button_to "Перейти к тестированию", [:new, @course, @lesson, :survey_attempt], method: :get, class: "btn btn-info" %>
                                             </div>
-                                            <h5>На прохождение этого теста Вам доступно попыток: <%= @lesson.attempts %></h5>
+                                            <h5>На прохождение этого теста Вам доступно попыток: <%= @lesson.attempts - @count_user_attempts %></h5>
                                             <h5>Вы использовали попыток: <%= @count_user_attempts %></h5>
                                         <% else %>
                                             <h4>Все попытки потрачены</h4>

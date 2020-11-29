@@ -1,0 +1,46 @@
+<div class="single-course-content section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="accordions col-12" id="accordion" role="tablist" aria-multiselectable="true">
+                <% if !@attempt.checked %>
+                    <div class="panel single-accordion">
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= @attempt.id %>"><%= @attempt.lesson.title %>
+                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </a></h6>
+                        <div id="collapse<%= @attempt.id %>" class="accordion-content collapse show">
+                            <div class="page-content">
+                            	<h5>Задание</h5>
+                                <div class="d-flex justify-content-center">
+                                	<a href="<%= @attempt.lesson.homework.url %>" download="<%= "задание" %>">Условие</a>
+                                </div>
+                                <hr class="mb-5 mt-5">
+                                <div class="row">
+	                            	<% @attempt.homework_answers.each_with_index do |answer, i| %>
+	                                    <div class="col-3">
+	                                    	<% #val = answer.value %>
+	                                    	<% if !answer.answer.blank? %>
+		                                    	<a href="<%= answer.answer.url %>" download='<%= "#{@user.last_name}_#{i+1}_ответ" %>'>
+		                                    		<%= "Ответ-#{i+1}" %>
+		                                    	</a>
+	                                    	<% else %>
+	                                    		<span style="font-size: 25px;">Без ответа</span>
+	                                    	<% end %>
+	                                    </div>
+	                            	<% end %>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                    <%= simple_form_for [:admin, @attempt], wrapper: :horizontal_form, html: { class: 'form-horizontal', style: "mb-3"} do |form| %>
+                    	<h5 class="mt-5">Количество вернорешенных заданий</h5>
+                    	<%= form.input :result, class: "w-100 m-3" %>
+                    	<%= form.submit "Сохранить результат", class: "btn btn-success w-100 m-3 mb-5" %>
+                    <% end %>
+                <% else %>
+                	<h4>Эта работа уже проверена</h4>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
