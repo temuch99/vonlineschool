@@ -14,7 +14,7 @@ class SurveyAttemptsController < BaseController
 	def create
 		@survey_attempt = current_user.survey_attempts.build(lesson_id: @lesson.id)
 		if @survey_attempt.save
-			@survey_attempt.questions = Question.take(@lesson.survey_size)
+			@survey_attempt.questions = @lesson.questions.take(@lesson.survey_size)
 			redirect_to [@course, @lesson, @survey_attempt, :questions]
 		else
 			redirect_to [@course, @lesson], notice: "Не удалось начать тест, обатитесь к администратору"
