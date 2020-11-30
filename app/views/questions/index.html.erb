@@ -3,3 +3,4 @@
 		<%= render "questions_table", answers: @answers %>
 	</div>
 </div>
+<%= button_to "Закончить прохождение теста", [@course, @lesson, @survey_attempt], data: {confirm: "Вы уверены, что хотите закончить тестирование?"}, method: :delete, class: "btn btn-success mt-3" %>

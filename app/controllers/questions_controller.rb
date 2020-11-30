@@ -22,9 +22,10 @@ class QuestionsController < BaseController
 		if @survey_answer.update(survey_answer_params)
 			# выбрать следующий вопрос
 			question = @survey_answer.question
-			q_index = @survey_attempt.questions.index(question)
-			if q_index + 1 < @survey_attempt.questions.count
-				next_question = @survey_attempt.questions[q_index + 1]
+			qs = @survey_attempt.questions.reverse
+			q_index = qs.index(question)
+			if q_index + 1 < qs.count
+				next_question = qs[q_index + 1]
 				redirect_to [:edit, @course, @lesson, @survey_attempt, next_question]
 			else
 				redirect_to [@course, @lesson, @survey_attempt]
@@ -62,7 +63,7 @@ class QuestionsController < BaseController
 	end
 
 	def set_answers
-		@answers = @survey_attempt.survey_answers
+		@answers = @survey_attempt.survey_answers.reverse
 	end
 
 	def survey_answer_params

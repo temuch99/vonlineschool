@@ -57,7 +57,7 @@ class SurveyAttemptsController < BaseController
 
 	def has_attempts
 		count_user_attempts = SurveyAttempt.where(lesson_id: @lesson.id, user_id: current_user.id).count
-		redirect_to [@course, @lesson], notice: "У Вас закончились попытки" if count_user_attempts >= @lesson.attempts
+		redirect_to [@course, @lesson], notice: "У Вас закончились попытки" if count_user_attempts > @lesson.attempts
 	end
 
 	def set_active_header_item

@@ -3,9 +3,6 @@ Rails.application.routes.draw do
 	root to: "static#main"
 	get '/contacts', to: "static#contacts"
 
-	#test
-	# post '/smail', to: "users#smail"
-
 	#users
 	devise_for :users, controllers: {
 		sessions: 'users/sessions',
@@ -16,6 +13,11 @@ Rails.application.routes.draw do
 	}
 	#user's profile
 	resources :users, only: [:show, :index]
+
+	#API
+	namespace :api do
+		resources :users, only: :show
+	end
 
 	#courses
 	resources :courses, only: [:show, :index] do
