@@ -5,6 +5,8 @@ class SurveyAttemptsController < BaseController
 	before_action :is_started, only: :show
 	before_action :has_attempts
 
+	before_action :has_time, only: [:new, :create]
+
 	def new
 		if SurveyAttempt.where(lesson_id: @lesson.id, user_id: current_user.id, done: false).count > 0
 			@survey_attempt = SurveyAttempt.find_by(lesson_id: @lesson.id, user_id: current_user.id, done: false)
@@ -12,7 +14,8 @@ class SurveyAttemptsController < BaseController
 	end
 
 	def create
-		@survey_attempt = current_user.survey_attempts.build(lesson_id: @lesson.id)
+		@survey_attempt = current_user.survey_attempts.build(lesson_id: @lesson.id,
+															 survey_end_at: Time.at(Time.now.to_i + @lesson.survey_duration * 60))
 		if @survey_attempt.save
 			@survey_attempt.questions = @lesson.questions.take(@lesson.survey_size)
 			redirect_to [@course, @lesson, @survey_attempt, :questions]
@@ -42,6 +45,11 @@ class SurveyAttemptsController < BaseController
 	end
 
 	private
+	def has_time
+		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @lesson.survey_end_at < Time.now
+		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @survey_attempt.survey_end_at < Time.now
+	end
+
 	def is_started
 		attempts = current_user.survey_attempts.where(lesson_id: @lesson.id, done: false).count
 		redirect_to [@course, @lesson], notice: "Вы еще не начинали тест" if attempts == 0

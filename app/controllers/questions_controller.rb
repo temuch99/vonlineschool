@@ -7,6 +7,8 @@ class QuestionsController < BaseController
 	before_action :set_answers, only: [:index, :edit, :update]
 	before_action :is_started
 
+	before_action :has_time
+
 	def edit
 		@question = Question.find(params[:id])
 		@survey_answer = SurveyAnswer.find_by(question_id: @question.id,
@@ -22,7 +24,7 @@ class QuestionsController < BaseController
 		if @survey_answer.update(survey_answer_params)
 			# выбрать следующий вопрос
 			question = @survey_answer.question
-			qs = @survey_attempt.questions.reverse
+			qs = @survey_attempt.questions
 			q_index = qs.index(question)
 			if q_index + 1 < qs.count
 				next_question = qs[q_index + 1]
@@ -37,6 +39,11 @@ class QuestionsController < BaseController
 	end
 
 	private
+	def has_time
+		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @lesson.survey_end_at < Time.now
+		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @survey_attempt.survey_end_at < Time.now
+	end
+	
 	def set_active_header_item
 		@header[:courses][:active] = true
 	end
@@ -56,6 +63,7 @@ class QuestionsController < BaseController
 
 	def set_survey_attempt
 		@survey_attempt = SurveyAttempt.find(params[:survey_attempt_id])
+		@timer = @survey_attempt.survey_end_at.to_i - Time.now.to_i
 	end
 
 	def set_question
@@ -63,7 +71,7 @@ class QuestionsController < BaseController
 	end
 
 	def set_answers
-		@answers = @survey_attempt.survey_answers.reverse
+		@answers = @survey_attempt.survey_answers
 	end
 
 	def survey_answer_params

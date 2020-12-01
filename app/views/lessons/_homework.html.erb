@@ -1,13 +1,12 @@
 <% if lesson.homework? %>
     <!-- About Review -->
-    <% if !current_user.homework_attempts.where(lesson_id: lesson.id).any? %>
-        <div class="about-review mb-30">
-            <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
-            <div class="border border-left-0 border-right-0 p-3">
-                <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
-            </div>
+    <div class="about-review mb-30">
+        <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
+        <div class="border border-left-0 border-right-0 p-3">
+            <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
         </div>
-    <% else %>
+    </div>
+    <% if current_user.homework_attempts.where(lesson_id: lesson.id).any? %>
         <div class="clever-ratings d-flex align-items-center mb-30">
             <div class="rating-viewer">
                 <!-- Rating -->

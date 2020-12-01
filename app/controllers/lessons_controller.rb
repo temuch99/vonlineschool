@@ -12,7 +12,8 @@ class LessonsController < BaseController
 		@lesson = Lesson.find(params[:id])
 
 		#количество вопросов больше, чем количество доступных вопросов
-		@is_survey = @lesson.questions.count >= @lesson.survey_size
+		# @is_survey = @lesson.questions.count >= @lesson.survey_size
+		@is_survey = @lesson.survey_end_at < Time.now
 
 		#попытки
 		@user_attempts = current_user.survey_attempts

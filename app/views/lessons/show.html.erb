@@ -45,8 +45,8 @@
                                 <div class="clever-review">
                                     <!-- Survey Link -->
                                     <div class="about-review mb-30">
-                                        <% if !@is_survey %>
-                                            <h4>Тест по данному уроку еще не готов</h4>
+                                        <% if @is_survey %>
+                                            <h4>Тест по данному уроку закончился</h4>
                                         <% elsif @has_attempts %>
                                             <h4>Пройти тест по пройденному материалу</h4>
                                             <div class="border border-left-0 border-right-0 p-3">
@@ -54,6 +54,7 @@
                                             </div>
                                             <h5>На прохождение этого теста Вам доступно попыток: <%= @lesson.attempts - @count_user_attempts %></h5>
                                             <h5>Вы использовали попыток: <%= @count_user_attempts %></h5>
+                                            <h5>Тест закончится <%= @lesson.survey_end_at.strftime("%F %T") %> по Москве</h5>
                                         <% else %>
                                             <h4>Все попытки потрачены</h4>
                                         <% end %>

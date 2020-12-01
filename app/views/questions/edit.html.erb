@@ -1,4 +1,8 @@
 <div class="row">
+    <div class="col-12">
+        <h2>Оставшееся время</h2>
+        <h3 id="timer"></h3>
+    </div>
 	<div class="col-12 col-md-6">
 		<div class="col-12">
 			<div class="d-flex justify-content-center">
@@ -37,3 +41,29 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        var t = '<%= @timer %>';
+        function send_data() {
+            $(".button_to").submit()
+        }
+        function update_clock() {
+            t -= 1;
+            $("#timer").html(formateDate(t));
+        }
+        function formateDate(d) {
+            let hour = Math.floor(d / 60 / 60);
+            let minute = Math.floor(d / 60);
+            let second = Math.floor(d - minute * 60);
+            return to_str(hour) + ":" + to_str(minute) + ":" + to_str(second);
+        }
+        function to_str(a) {
+            if (a / 10 > 0) 
+                return a;
+            return "0"+a;
+        }
+        setInterval(update_clock, 1000);
+        setTimeout(send_data, <%= @timer*1000 %>);
+    })
+</script>
