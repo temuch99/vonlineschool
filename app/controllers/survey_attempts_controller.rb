@@ -47,7 +47,6 @@ class SurveyAttemptsController < BaseController
 	private
 	def has_time
 		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @lesson.survey_end_at < Time.now
-		redirect_to [@course, @lesson], notice: "Время проведения теста закончилось" if @survey_attempt.survey_end_at < Time.now
 	end
 
 	def is_started
