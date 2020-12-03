@@ -48,6 +48,9 @@ Rails.application.routes.draw do
 		#homeworks
 		resources :homework_attempts, only: [:show, :index, :update]
 
+		#surveys
+		resources :survey_attempts, only: [:index, :destroy]
+
 		#api for sortable lessons
 		namespace :api do
 			namespace :lessons do

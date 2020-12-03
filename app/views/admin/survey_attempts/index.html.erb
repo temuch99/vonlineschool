@@ -1,0 +1,42 @@
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#name").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#table tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
+</script> 
+<div class="row">
+	<div class="col-3 mb-3">
+		<h4>Поиск</h4>
+		<input type="text" id="name" class="form-control">
+	</div>
+</div>
+<table class="table table-striped" id="table">
+	<thead>
+		<tr>
+			<th>Название курса</th>
+			<th>Название урока</th>
+			<th>Имя пользователя</th>
+			<th>Результат</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @attempts.each do |survey| %>
+			<tr>
+				<td><%= survey.lesson.course.title %></td>
+				<td><%= survey.lesson.title %></td>
+				<td><%= link_to survey.user.email, [survey.user] %></td>
+				<td><%= survey.result %></td>
+				<td class="btn-group-vertical" role="group">
+					<%= link_to 'Профиль', [survey.user], class: "btn btn-info btn-sm" %>
+					<%= link_to 'Удалить попытку', [:admin, survey], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

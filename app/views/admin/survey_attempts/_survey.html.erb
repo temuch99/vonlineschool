@@ -1,0 +1,14 @@
+<% if survey %>
+	<tr class="survey">
+		<td><%= survey.title %></td>
+		<td><%= survey.lesson.title %></td>
+		<td class="btn-group-vertical" role="group">
+			<%= link_to 'Редактировать', [:edit, :admin, @course, @lesson, survey], class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Удалить', [:admin, @course, @lesson, survey], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
+		</td>
+	</tr>
+<% else %>
+	<tr>
+		<td>Тест пока что не создан</td>
+	</tr>
+<% end %>

@@ -2,7 +2,7 @@ class HomeworksController < BaseController
 	before_action :authenticate_user!
 	before_action :set_course
 	before_action :set_lesson
-	before_action :has_attempts
+	# before_action :has_attempts
 
 	def new
 	end
