@@ -24,7 +24,7 @@ class QuestionsController < BaseController
 		if @survey_answer.update(survey_answer_params)
 			# выбрать следующий вопрос
 			question = @survey_answer.question
-			qs = @survey_attempt.questions
+			qs = @survey_attempt.questions.order("updated_at")
 			q_index = qs.index(question)
 			if q_index + 1 < qs.count
 				next_question = qs[q_index + 1]

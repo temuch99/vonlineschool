@@ -3,7 +3,16 @@
         <h5>Условие</h5>
         <div class="сol-12">
             <% if @lesson.homework %>
-                <a href="<%= @lesson.homework.url %>" download="<%= "задание" %>">Домашнее задание</a>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4 d-flex border justify-content-center">
+                        <div class="d-flex align-items-center">
+                            Скачать домашнее задание
+                        </div>
+                        <span class="handle badge badge-secondary" style="background-color: white; width: 10%; height: 10%;"><a href="<%= @lesson.homework.url %>" download="<%= "задание" %>"><image src="<%= root_url %>/img/core-img/download.svg" style="width: 100%"></image></a></span>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
             <% else %>
                 <p>Домашнее задание отсутствует</p>
             <% end %>

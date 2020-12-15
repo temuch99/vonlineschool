@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 	#user's profile
 	resources :users, only: [:show, :index]
 
+	#rating
+	resources :ratings, only: :index
+
 	#API
 	namespace :api do
 		resources :users, only: :show

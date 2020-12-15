@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-12">
+		<table class="table">
+			<thead>
+				<th>Место</th>
+				<th>Имя</th>
+				<th>Очки</th>
+			</thead>
+			<tbody>
+				<% @users.take(10).each_with_index do |u, index| %>
+					<tr>
+						<td><%= index + 1%></td>
+						<td><%= "#{u.first_name} #{u.last_name}" %></td>
+						<td><%= u.scores %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

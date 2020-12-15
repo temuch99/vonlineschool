@@ -18,7 +18,8 @@
 					</p>
 					<div class="btn-group">
 						<% if can? :manage, @user %>
-	                        <%= button_to "Редактировать профиль", [:edit, @user, :registration], method: :get, class: "btn btn-sm btn-primary" %>
+	                        <%= button_to "Редактировать профиль", [:edit, @user, :registration], method: :get, class: "btn btn-sm btn-primary mr-3" %>
+	                        <%= button_to "Удалить профиль", [@user, :registration], params: {id: @user.id}, method: :delete, class: "btn btn-sm btn-danger", data: {confirm: "Вы уверены?"} %>
                         <% end %>
                     </div>
 				</div>

@@ -21,4 +21,8 @@ class User < ApplicationRecord
 	def is_admin?
 		self.roles.exists?(name: :admin)
 	end
+
+	def scores
+		self.survey_attempts.select("lesson_id").group("lesson_id").maximum("result").values.sum
+	end
 end

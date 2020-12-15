@@ -1,7 +1,7 @@
 <div class="container">
 	<h3>Все вопросы</h3>
 	<div class="row">
-		<% answers.each_with_index do |answer, i| %>
+		<% answers.order(:created_at).each_with_index do |answer, i| %>
 			<div class="col-2">
 				<% status = answer.answer.nil? ? "skipped" : "success" %>
 				<%= link_to "<div class='col-12 #{status}'>#{i + 1}</div>".html_safe, [:edit, @course, @lesson, @survey_attempt, answer.question] %>
