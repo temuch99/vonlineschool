@@ -54,6 +54,9 @@ gem 'mini_magick'
 
 gem 'acts_as_list'
 
+gem "ed25519"
+gem "bcrypt_pbkdf"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
