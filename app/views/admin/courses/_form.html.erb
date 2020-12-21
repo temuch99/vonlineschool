@@ -3,6 +3,18 @@
 	<%= f.input :description %>
 	<%= f.input :image %>
 
+	<h5>Секции</h5>
+	<div class="sections d-flex justify-content-end">
+		<div class="col-md-10 sections_sortable">
+			<%= f.simple_fields_for :sections, f.object.sections.order(:position) do |task| %>
+				<%= render 'section_fields', f: task %>
+			<% end %>
+			<div class="links">
+				<%= link_to_add_association 'Добавить секцию', f, :sections, class: "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+
 	<div class="button-box float-right">
 		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
 		<%= link_to "Назад", admin_courses_path, class: "btn btn-danger" %>

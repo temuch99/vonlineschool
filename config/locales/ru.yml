@@ -54,15 +54,22 @@ ru:
         description: "Описание"
       lesson:
         title: "Название"
+        section: "Секция"
+        attempts: "Количество попыток"
+        homework: "Домашнее задание"
         description: "Описание"
         text_lection: "Текстовая лекция"
         video_lection: "Видео лекция"
         lection_links: "Полезные ссылки"
         survey_duration: "Продолжительность теста"
         survey_size: "Количество вопросов в тесте"
+        survey_end_at: "Время окончания тестирования"
       question:
         task: "Вопрос"
         correct_answer: "Правильный ответ"
+      text_lection:
+        lection: "Файл"
+        title: "Название"
       user:
         first_name: "Имя"
         last_name: "Фамилия"

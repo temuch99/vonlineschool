@@ -1,0 +1,10 @@
+<div class="nested-fields card">
+	<div class="card-header">
+		<span class="handle">Секция</span>
+	</div>
+	<div>
+		<%= f.input :position, as: :hidden %>
+		<%= f.input :title %>
+		<%= link_to_remove_association 'Удалить секцию', f, class: "btn btn-danger" %>
+	</div>
+</div>

@@ -10,6 +10,7 @@ class Admin::LessonsController < Admin::AdminController
     add_breadcrumb "Новый урок", [:new, :admin, @course, :lesson]
 
     @lesson = @course.lessons.build
+    @lesson.text_lections.build if @lesson.text_lections.empty?
   end
 
   def create
@@ -19,6 +20,7 @@ class Admin::LessonsController < Admin::AdminController
       redirect_to [:admin, @course, :lessons], notice: "Урок создан"
     else
       add_breadcrumb "Новый урок", [:new, :admin, @course, :lesson]
+      @lesson.text_lections.build if @lesson.text_lections.empty?
 
       flash.now[:alert] = "Произошла ошибка"
       render 'new'
@@ -26,6 +28,7 @@ class Admin::LessonsController < Admin::AdminController
   end
 
   def edit
+    @lesson.text_lections.build if @lesson.text_lections.empty?
     add_breadcrumb "Редактировать #{@lesson.title}", [:edit, :admin, @course, @lesson]
   end
 
@@ -34,6 +37,7 @@ class Admin::LessonsController < Admin::AdminController
       redirect_to [:admin, @course, :lessons], notice: "Урок обновлен"
     else
       add_breadcrumb "Редактировать #{@lesson.title}", [:edit, :admin, @course, @lesson]
+      @lesson.text_lections.build if @lesson.text_lections.empty?
 
       flash.now[:alert] = "Произошла ошибка"
       render 'edit'
@@ -66,7 +70,8 @@ class Admin::LessonsController < Admin::AdminController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:title, :description, :text_lection, :video_lection, :lection_links, :survey_size, 
-                                     :survey_duration, :attempts, :homework, :survey_end_at)
+      params.require(:lesson).permit(:title, :description, :video_lection, :lection_links, :survey_size, 
+                                     :section_id, :survey_duration, :attempts, :homework, :survey_end_at,
+                                     text_lections_attributes: [:lection, :id, :_destroy, :title])
     end
 end

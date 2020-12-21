@@ -21,8 +21,9 @@ require('jquery-ui')
 // require('jquery-fileupload')
 // require ('jquery-fileupload/basic')
 // import 'jquery-fileinput'
+require("@nathanvda/cocoon")
 require('./js/lessons')
-// require('./js/courses')
+require('./js/courses')
 
 
 // require("trix")

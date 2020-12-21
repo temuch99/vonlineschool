@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_163858) do
+ActiveRecord::Schema.define(version: 2020_12_21_190200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,9 @@ ActiveRecord::Schema.define(version: 2020_12_01_163858) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "homework"
     t.datetime "survey_end_at", default: "2020-12-05 04:47:25"
+    t.bigint "section_id", null: false
     t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["section_id"], name: "index_lessons_on_section_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -73,6 +75,15 @@ ActiveRecord::Schema.define(version: 2020_12_01_163858) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.string "title"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
   create_table "survey_answers", force: :cascade do |t|
@@ -95,6 +106,13 @@ ActiveRecord::Schema.define(version: 2020_12_01_163858) do
     t.datetime "survey_end_at"
     t.index ["lesson_id"], name: "index_survey_attempts_on_lesson_id"
     t.index ["user_id"], name: "index_survey_attempts_on_user_id"
+  end
+
+  create_table "text_lections", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.string "lection"
+    t.string "title"
+    t.index ["lesson_id"], name: "index_text_lections_on_lesson_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,10 +147,13 @@ ActiveRecord::Schema.define(version: 2020_12_01_163858) do
   add_foreign_key "homework_attempts", "lessons"
   add_foreign_key "homework_attempts", "users"
   add_foreign_key "lessons", "courses"
+  add_foreign_key "lessons", "sections"
+  add_foreign_key "sections", "courses"
   add_foreign_key "survey_answers", "questions"
   add_foreign_key "survey_answers", "survey_attempts"
   add_foreign_key "survey_attempts", "lessons"
   add_foreign_key "survey_attempts", "users"
+  add_foreign_key "text_lections", "lessons"
   add_foreign_key "users_roles", "roles"
   add_foreign_key "users_roles", "users"
 end

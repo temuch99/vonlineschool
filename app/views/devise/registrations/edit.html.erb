@@ -9,6 +9,11 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Ждем подтверждения аккаунта: <%= resource.unconfirmed_email %></p>
     <% end %>
+    <div>
+      <label>Файл</label>
+      <%= image_tag(resource.avatar.url) if resource.avatar? %>
+      <%= f.input :avatar, as: :file %>
+    </div>
 
     <div class="row">
       <div class="col-md-6 col-12">

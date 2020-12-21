@@ -10,6 +10,8 @@ class User < ApplicationRecord
 	has_many :survey_attempts, dependent: :destroy
 	has_many :homework_attempts, dependent: :destroy
 
+	mount_uploader :avatar, ImageUploader
+
 	def create_role
 		self.roles << Role.find_by_name(:user)
 	end

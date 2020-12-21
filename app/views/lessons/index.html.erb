@@ -3,11 +3,22 @@
     <div class="container">
         <div class="row">
             <div class="accordions col-12" id="accordion" role="tablist" aria-multiselectable="true">
-                <% @lessons.each do |lesson| %>
-                    <div class="page-content">
-                        <h6>Название занятия: <%= lesson.title %></h6>
-                        <p><b>Описание:</b> <%= lesson.description.html_safe %></p>
-                        <%= button_to "Перейти", [@course, lesson], method: :get, class: "btn btn-info" %>
+                <% @course.sections.each do |section| %>
+                    <!-- Single Accordian Area -->
+                    <div class="panel single-accordion">
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= section.id %>"><%= section.title %>
+                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </a></h6>
+                        <div id="collapse<%= section.id %>" class="accordion-content collapse show">
+                            <% section.lessons.each do |lesson| %>
+                                <div class="page-content">
+                                    <h6>Название занятия: <%= lesson.title %></h6>
+                                    <p><b>Описание:</b> <%= lesson.description.html_safe %></p>
+                                    <%= button_to "Перейти", [@course, lesson], method: :get, class: "btn btn-info p-2" %>
+                                </div>
+                            <% end %>
+                        </div>
                     </div>
                 <% end %>
             </div>

@@ -10,9 +10,13 @@
 
 <!-- Curriculum Level -->
 <div class="curriculum-level mb-30">
-    <% if lesson.text_lection? %>
-        <h4>Текстовая лекция</h4>
-        <p><%= link_to "Скачать лекцию по уроку #{lesson.title}", lesson.text_lection.url, style: "text-decoration: underline; color: blue;" %></p>
+    <% if lesson.text_lections.any? %>
+        <h4>Текстовые лекции</h4>
+        <% lesson.text_lections.each do |lection| %>
+        <p>
+            <%= link_to "Скачать \"#{lection.title}\"", "#{root_url}#{lection.lection.url}", style: "text-decoration: underline; color: blue;" %>        
+        </p>
+        <% end %>
     <% else %>
         <p>Текстовая лекция отсутствует</p>
     <% end %>

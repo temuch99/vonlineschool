@@ -1,8 +1,8 @@
 <%= simple_form_for [:admin, @course, @lesson], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
 	<%= f.input :title %>
+	<%= f.association :section, collection: @course.sections %>
 	<%= f.input :description %>
 	<%= f.input :video_lection %>
-	<%= f.input :text_lection, as: :file %>
 	<%= f.input :survey_size %>
 	<h6 class="">В это поле вставляйте только сами ссылки, через пробел или перенос строки</h6>
 	<%= f.input :lection_links %>
@@ -10,6 +10,19 @@
 	<%= f.input :attempts %>
 	<%= f.input :homework %>
 	<%= f.input :survey_end_at %>
+
+	<h5>Лекции</h5>
+	<div class="lections d-flex justify-content-end">
+		<div class="col-md-12">
+			<%= f.simple_fields_for :text_lections do |task| %>
+				<%= render 'text_lection_fields', f: task %>
+			<% end %>
+			<div class="links">
+				<%= link_to_add_association 'Добавить лекцию', f, :text_lections, class: "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+
 	<div></div>
 	<div class="button-box float-right">
 		<%= f.submit "Сохранить", class: 'btn btn-primary' %>

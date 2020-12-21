@@ -11,6 +11,7 @@ class Admin::CoursesController < Admin::AdminController
     add_breadcrumb "Новый курс", :new_admin_course_path
 
     @course = Course.new
+    @course.sections.build if @course.sections.empty?
   end
 
   def create
@@ -20,6 +21,7 @@ class Admin::CoursesController < Admin::AdminController
       redirect_to admin_courses_path, notice: "Курс создан"
     else
       add_breadcrumb "Новый курс", :new_admin_course_path
+      @course.sections.build if @course.sections.empty?
 
       flash.now[:alert] = "Произошла ошибка"
       render 'new'
@@ -27,6 +29,7 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def edit
+    @course.sections.build if @course.sections.empty?
     add_breadcrumb "Редактировать #{@course.title}", edit_admin_course_path(@course)
   end
 
@@ -35,6 +38,7 @@ class Admin::CoursesController < Admin::AdminController
       redirect_to admin_courses_path, notice: "Курс обновлен"
     else
       add_breadcrumb "Редактировать #{@course.title}", edit_admin_course_path(@course)
+      @course.sections.build if @course.sections.empty?
 
       flash.now[:alert] = "Произошла ошибка"
       render 'edit'
@@ -59,6 +63,8 @@ class Admin::CoursesController < Admin::AdminController
     end
 
     def course_params
-      params.require(:course).permit(:title, :description, :image)
+      params.require(:course).permit(:title, :description, :image,
+                                    sections_attributes: [:title, :description, 
+                                      :position, :_destroy, :id])
     end
 end
