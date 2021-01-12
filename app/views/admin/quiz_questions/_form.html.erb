@@ -1,0 +1,21 @@
+<%= simple_form_for [:admin, @course, @question], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
+	<%= f.input :question, class: "file" %>
+	<%= f.input :number %>
+
+	<h5>Ответы</h5>
+	<div class="sections d-flex justify-content-end">
+		<div class="col-md-12 sections_sortable">
+			<%= f.simple_fields_for :quiz_answers, f.object.quiz_answers do |answer| %>
+				<%= render 'quiz_answer_fields', f: answer %>
+			<% end %>
+			<div class="links">
+				<%= link_to_add_association 'Добавить ответ', f, :quiz_answers, class: "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		<%= link_to "Назад", [:admin, :courses], class: "btn btn-danger" %>
+	</div>
+<% end %>

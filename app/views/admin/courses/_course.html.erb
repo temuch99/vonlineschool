@@ -4,6 +4,7 @@
 	<td><%= course.description %></td>
 	<td class="btn-group-vertical" role="group">
 		<%= link_to 'Уроки', [:admin, course, :lessons], class: "btn btn-primary btn-sm" %>
+		<%= link_to 'Банк вопросов', [:admin, course, :questions], class: "btn btn-primary btn-sm" %>
 		<%= link_to 'Редактировать', [:edit, :admin, course], class: "btn btn-primary btn-sm" %>
 		<%= link_to 'Удалить', admin_course_path(course), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
 	</td>

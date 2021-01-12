@@ -1,0 +1,14 @@
+<h3>Вопросы для теста</h3>
+<%= link_to 'Добавить вопрос в тест', [:new, :admin, @course, :extension_question], class: 'btn btn-success' %>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Содержание вопроса</th>
+			<th>Правильный ответ</th>
+		</tr>
+	</thead>
+	<tbody class="surveys">
+		<%= render partial: 'question', collection: @questions.order(:created_at) %>
+	</tbody>
+</table>
+<%= paginate @questions, theme: "twitter-bootstrap-4" %>

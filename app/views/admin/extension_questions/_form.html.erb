@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @course, @question], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
+	<%= f.input :number %>
+	<%= f.input :task, class: "file" %>
+	<%= f.input :correct_answer %>
+
+
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		<%= link_to "Назад", [:admin, @course, :extension_questions], class: "btn btn-danger" %>
+	</div>
+<% end %>

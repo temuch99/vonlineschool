@@ -1,0 +1,10 @@
+<div class="nested-fields card">
+	<div class="card-header">
+		<span class="handle">Ответ</span>
+	</div>
+	<div>
+		<%= f.input :answer %>
+		<%= f.input :is_correct %>
+		<%= link_to_remove_association 'Удалить ответ', f, class: "btn btn-danger" %>
+	</div>
+</div>

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
 	#courses
 	resources :courses, only: [:show, :index] do
+
 		#lessons
 		resources :lessons, only: [:show, :index] do
 			#surveys
@@ -41,6 +42,16 @@ Rails.application.routes.draw do
 		#courses
 		root to: 'courses#index'
 		resources :courses, except: :show do
+
+			#banks
+			get "questions", to: "banks#index"
+
+			resources :quiz_questions do
+			end
+
+			resources :extension_questions do
+			end
+
 			#lessons
 			resources :lessons, except: :show do
 				#questions
