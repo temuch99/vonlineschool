@@ -1,6 +1,12 @@
 <h3>Вопросы для Банка с данными</h3>
 <div class="row">
 	<div class="col-12 mb-3">
+		<%= link_to 'Посмотреть вопросы первой части', [:admin, @course, :quiz_questions], class: 'btn btn-success' %>
+	</div>
+	<div class="col-12 mb-3">
+		<%= link_to 'Посмотреть вопросы второй части', [:admin, @course, :extension_questions], class: 'btn btn-success' %>
+	</div>
+	<div class="col-12 mb-3">
 		<%= link_to 'Добавить вопрос первой части (тестовый) в банк', [:new, :admin, @course, :quiz_question], class: 'btn btn-success' %>
 	</div>
 	<div class="col-12">
