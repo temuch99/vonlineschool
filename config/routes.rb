@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 	#API
 	namespace :api do
 		resources :users, only: :show
+
+		resources :courses, only: :index do
+			resources :questions, only: :show
+		end
 	end
 
 	#courses
