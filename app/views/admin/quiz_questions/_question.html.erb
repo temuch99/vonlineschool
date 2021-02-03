@@ -1,8 +1,0 @@
-<tr class="survey">
-	<td><%= image_tag(question.question.medium.url, style: "width:100%;height:100%;object-fit:cover;") %></td>
-	<td><%= question.get_correct.join(", ") %></td>
-	<td class="btn-group-vertical" role="group">
-		<%= link_to 'Редактировать', [:edit, :admin, @course, question], class: "btn btn-primary btn-sm" %>
-		<%= link_to 'Удалить', [:admin, @course, question], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
-	</td>
-</tr>

@@ -48,10 +48,7 @@ Rails.application.routes.draw do
 		resources :courses, except: :show do
 
 			#banks
-			get "questions", to: "banks#index"
-
-			resources :quiz_questions do
-			end
+			# get "questions", to: "banks#index"
 
 			resources :extension_questions do
 			end
