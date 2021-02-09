@@ -69,7 +69,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano',         require: false
+  gem 'capistrano', '3.14.1', require: false
   gem 'capistrano-nvm', require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-scm-copy'

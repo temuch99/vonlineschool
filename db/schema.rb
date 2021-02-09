@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_160731) do
+ActiveRecord::Schema.define(version: 2021_02_09_160313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 2021_02_09_160731) do
     t.string "task"
     t.string "correct_answer"
     t.integer "number", null: false
+    t.bigint "discipline_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "discipline_id", null: false
     t.index ["discipline_id"], name: "index_extension_questions_on_discipline_id"
   end
 
