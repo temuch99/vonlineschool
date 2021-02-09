@@ -1,0 +1,14 @@
+<h3 class="float-left">Дисциплины</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Название</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @disciplines %>
+	</tbody>
+</table>
+<%= link_to "Добавить новую дисциплину", new_admin_discipline_path, class: "btn btn-success" %>
+<%= paginate @disciplines, theme: "twitter-bootstrap-4" %>

@@ -12,7 +12,8 @@ class Admin::AdminController < ApplicationController
 		@header = { 
 			courses: { name: 'Курсы', path: admin_courses_path },
 			homeworks: { name: "Д/З", path: admin_homework_attempts_path },
-			surveys: { name: "Результаты тестов", path: admin_survey_attempts_path }
+			surveys: { name: "Результаты тестов", path: admin_survey_attempts_path },
+			disciplines: { name: "Дисциплины", path: admin_disciplines_path }
 			# banks: { name: "Банк заданий", path: admin }
 		}
 	end

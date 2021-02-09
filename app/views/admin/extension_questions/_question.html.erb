@@ -3,7 +3,7 @@
 	<td><%= question.correct_answer %></td>
 	<td><%= question.number %></td>
 	<td class="btn-group-vertical" role="group">
-		<%= link_to 'Редактировать', [:edit, :admin, @course, question], class: "btn btn-primary btn-sm" %>
-		<%= link_to 'Удалить', [:admin, @course, question], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
+		<%= link_to 'Редактировать', [:edit, :admin, @discipline, question], class: "btn btn-primary btn-sm" %>
+		<%= link_to 'Удалить', [:admin, @discipline, question], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
 	</td>
 </tr>

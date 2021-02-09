@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_071701) do
+ActiveRecord::Schema.define(version: 2021_02_09_160731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,20 @@ ActiveRecord::Schema.define(version: 2021_01_12_071701) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "disciplines", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "extension_questions", force: :cascade do |t|
     t.string "task"
     t.string "correct_answer"
     t.integer "number", null: false
-    t.bigint "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_extension_questions_on_course_id"
+    t.bigint "discipline_id", null: false
+    t.index ["discipline_id"], name: "index_extension_questions_on_discipline_id"
   end
 
   create_table "homework_answers", force: :cascade do |t|
@@ -171,7 +177,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_071701) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "extension_questions", "courses"
+  add_foreign_key "extension_questions", "disciplines"
   add_foreign_key "homework_answers", "homework_attempts"
   add_foreign_key "homework_attempts", "lessons"
   add_foreign_key "homework_attempts", "users"

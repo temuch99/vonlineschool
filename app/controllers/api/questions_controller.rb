@@ -1,8 +1,8 @@
 class Api::QuestionsController < Api::ApiController
-	before_action :set_course
+	before_action :set_discipline
 
 	def show
-		question = @course.extension_questions.where(number: params[:id]).take(1)[0]
+		question = @discipline.extension_questions.where(number: params[:id]).take(1)[0]
 		if question
 			render json: {
 				question: question.task.url,
@@ -22,7 +22,7 @@ class Api::QuestionsController < Api::ApiController
 
 	private
 	def set_course
-		@course = Course.find(params[:course_id])
+		@discipline = Discipline.find(params[:discipline_id])
 	end
 
 	def not_found

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 	namespace :api do
 		resources :users, only: :show
 
-		resources :courses, only: :index do
+		resources :disciplines, only: :index do
 			resources :questions, only: :show
 		end
 	end
@@ -43,6 +43,13 @@ Rails.application.routes.draw do
 
 	#admin dashboard
 	namespace :admin do
+		#disciplines
+		resources :disciplines, except: :show do
+
+			resources :extension_questions do
+			end
+		end
+
 		#courses
 		root to: 'courses#index'
 		resources :courses, except: :show do
@@ -50,8 +57,6 @@ Rails.application.routes.draw do
 			#banks
 			# get "questions", to: "banks#index"
 
-			resources :extension_questions do
-			end
 
 			#lessons
 			resources :lessons, except: :show do

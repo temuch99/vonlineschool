@@ -1,0 +1,8 @@
+<tr>
+	<td><%= discipline.title %></td>
+	<td class="btn-group-vertical" role="group">
+		<%= link_to 'Банк вопросов', [:admin, discipline, :extension_questions], class: "btn btn-primary btn-sm" %>
+		<%= link_to 'Редактировать', [:edit, :admin, discipline], class: "btn btn-primary btn-sm" %>
+		<%= link_to 'Удалить', admin_discipline_path(discipline), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
+	</td>
+</tr>

@@ -8,7 +8,9 @@
                 <div class="col-md-6">
                     <div class="card mb-4 shadow-sm">
                         <div class="bd-placeholder-img card-img-top">
-                            <%= image_tag c.image.url %>
+                            <% if c.image.url %>
+                                <%= image_tag c.image.url %>
+                            <% end %>
                         </div>
                         <div class="card-body">
                             <h4><%= c.title %></h4>
