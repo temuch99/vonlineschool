@@ -69,7 +69,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano', '3.14.1', require: false
+  gem 'capistrano', require: false
   gem 'capistrano-nvm', require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-scm-copy'
@@ -79,6 +79,7 @@ group :development do
   gem 'capistrano-yarn'
   gem 'capistrano-webpacker-precompile', require: false
   gem 'capistrano-rails-console', require: false
+  gem 'sshkit-sudo'
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
