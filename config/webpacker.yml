@@ -50,7 +50,7 @@ default: &default
 
 development:
   <<: *default
-  compile: false
+  compile: true
 
   # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules
   check_yarn_integrity: true
@@ -87,10 +87,10 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
+  compile: true
 
   # Extract and emit a css file
   extract_css: true
 
   # Cache manifest.json for performance
-  cache_manifest: false
+  cache_manifest: true
