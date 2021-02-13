@@ -10,8 +10,7 @@
 # require 'capistrano/bundler'
 # require 'capistrano/rvm'
 # require 'capistrano/puma'
-# require 'capistrano/yarn'
-# require 'capistrano/webpacker/precompile'
+
 # require 'capistrano/rails/console'
 
 # install_plugin Capistrano::Puma
@@ -27,6 +26,8 @@ require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/puma'
+require 'capistrano/webpacker/precompile'
+require 'capistrano/yarn'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
