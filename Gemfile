@@ -70,16 +70,16 @@ end
 
 group :development do
   gem 'capistrano', require: false
-  gem 'capistrano-nvm', require: false
+  # gem 'capistrano-nvm', require: false
   gem 'capistrano-rvm',     require: false
-  gem 'capistrano-scm-copy'
+  # gem 'capistrano-scm-copy'
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
-  gem 'capistrano-yarn'
-  gem 'capistrano-webpacker-precompile', require: false
-  gem 'capistrano-rails-console', require: false
-  gem 'sshkit-sudo'
+  # gem 'capistrano-yarn'
+  # gem 'capistrano-webpacker-precompile', require: false
+  # gem 'capistrano-rails-console', require: false
+  # gem 'sshkit-sudo'
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
