@@ -380,7 +380,7 @@ DEPENDENCIES
   breadcrumbs_on_rails
   byebug
   cancan
-  capistrano (= 3.14.1)
+  capistrano
   capistrano-bundler
   capistrano-nvm
   capistrano-rails
