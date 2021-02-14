@@ -8,13 +8,6 @@ set :use_sudo, false
 
 set :rvm_type, :user
 # set :rvm_ruby_version, '.'
-set :default_environment, {
-  'PATH' => "/home/temuch/.rvm/gems/ruby-2.7.1/bin",
-  'RUBY_VERSION' => 'ruby 2.7.1',
-  'GEM_HOME'     => '/home/temuch/.rvm/gems/ruby-2.7.1',
-  'GEM_PATH'     => '/home/temuch/.rvm/gems/ruby-2.7.1',
-  'BUNDLE_PATH'  => '/home/temuch/.rvm/gems/ruby-2.7.1'  # If you are using bundler.
-}
 
 set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
