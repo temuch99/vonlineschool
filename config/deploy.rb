@@ -5,11 +5,15 @@ set :application, "vonlineschool"
 
 set :rails_env, "production"
 set :use_sudo, false
+
+set :default_env, { rvm_bin_path: '~/.rvm/bin' }
+
 set :rvm_type, :user
 set :migration_role, :web
 set :conditionally_migrate, true
 set :keep_releases, 5
 set :pty, true
+
 
 set :user, "temuch"
 set :repo_url, "https://github.com/temuch99/vonlineschool.git"

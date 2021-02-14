@@ -13,6 +13,6 @@ require 'capistrano/yarn'
 require 'capistrano/webpacker/precompile'
 require 'capistrano/rails/console'
 
-install_plugin Capistrano::Puma
+# install_plugin Capistrano::Puma
 
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
