@@ -9,6 +9,7 @@ set :use_sudo, false
 set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
 set :rvm_type, :user
+set :rvm_ruby_version, '2.7.1'
 set :migration_role, :web
 set :conditionally_migrate, true
 set :keep_releases, 5
