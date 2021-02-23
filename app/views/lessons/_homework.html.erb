@@ -14,6 +14,16 @@
                 <% ha = current_user.homework_attempts.where(lesson_id: lesson.id).first %>
                 <% if ha.checked %>
                     <span style="font-size: 40px;"><b><%= "#{ha.result}" %></b></span>
+                    <h5>Ремарки к домашнему заданию</h5>
+                    <div class="row">
+                        <% ha.homework_remarks.each_with_index do |remark, i| %>
+                            <div class="col-3">
+                                <a href="<%= remark.remark.url %>" download='<%= "#{current_user.last_name}_#{i+1}_ответ" %>'>
+                                    <%= "Ремарка-#{i+1}" %>
+                                </a>
+                            </div>
+                        <% end %>
+                    </div>
                 <% else %>
                     <span style="font-size: 20px;"><b>Задание еще не проверено</b></span>
                 <% end %>

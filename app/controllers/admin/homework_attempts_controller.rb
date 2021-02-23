@@ -12,7 +12,12 @@ class Admin::HomeworkAttemptsController < Admin::AdminController
 
 	def update
 		attempt = HomeworkAttempt.find(params[:id])
-		if attempt.update(result: params[:result], checked: true)
+
+		params[:homework_attempt][:remark].each do |remark|
+			HomeworkRemark.create(homework_attempt_id: attempt.id, remark: remark)
+		end
+
+		if attempt.update(result: params[:homework_attempt][:result], checked: true)
 			HomeworkMailer.with(user: current_user).checked_homework.deliver_now
 			flash[:success] = "Результат отправлен"
 		else

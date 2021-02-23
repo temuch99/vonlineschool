@@ -35,6 +35,11 @@
                     <%= simple_form_for [:admin, @attempt], wrapper: :horizontal_form, html: { class: 'form-horizontal', style: "mb-3"} do |form| %>
                     	<h5 class="mt-5">Количество вернорешенных заданий</h5>
                     	<%= form.input :result, class: "w-100 m-3" %>
+                        <h5 class="mt-5">Ремарки по домашнему заданию</h5>
+                        <div class="col-12">
+                            <label for="answer">Ваши сканы:</label>
+                            <%= form.file_field :remark, multiple: true, class: "w-50 mt-3" %>
+                        </div>
                     	<%= form.submit "Сохранить результат", class: "btn btn-success w-100 m-3 mb-5" %>
                     <% end %>
                 <% else %>

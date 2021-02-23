@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_160313) do
+ActiveRecord::Schema.define(version: 2021_02_23_155111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 2021_02_09_160313) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lesson_id"], name: "index_homework_attempts_on_lesson_id"
     t.index ["user_id"], name: "index_homework_attempts_on_user_id"
+  end
+
+  create_table "homework_remarks", force: :cascade do |t|
+    t.string "remark"
+    t.bigint "homework_attempt_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["homework_attempt_id"], name: "index_homework_remarks_on_homework_attempt_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -181,6 +189,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_160313) do
   add_foreign_key "homework_answers", "homework_attempts"
   add_foreign_key "homework_attempts", "lessons"
   add_foreign_key "homework_attempts", "users"
+  add_foreign_key "homework_remarks", "homework_attempts"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lessons", "sections"
   add_foreign_key "quiz_answers", "quiz_questions"
