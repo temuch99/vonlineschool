@@ -36,7 +36,7 @@ class AnswerUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png pdf doc docx)
+    %w(jpg jpeg gif png pdf doc docx jfif tiff bmp)
   end
 
   # Override the filename of the uploaded files:
