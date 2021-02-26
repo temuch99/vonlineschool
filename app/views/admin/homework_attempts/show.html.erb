@@ -20,7 +20,7 @@
 	                                    <div class="col-3">
 	                                    	<% #val = answer.value %>
 	                                    	<% if !answer.answer.blank? %>
-		                                    	<a href="<%= answer.answer.url %>" download='<%= "#{@user.last_name}_#{i+1}_ответ" %>'>
+		                                    	<a href="<%= answer.answer.url %>" download='<%= "#{@user.last_name}_#{i+1}_ответ.#{answer.answer.file.extension}" %>'>
 		                                    		<%= "Ответ-#{i+1}" %>
 		                                    	</a>
 	                                    	<% else %>
