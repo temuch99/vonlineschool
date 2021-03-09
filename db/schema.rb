@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_155111) do
+ActiveRecord::Schema.define(version: 2021_03_09_214327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_155111) do
     t.string "homework"
     t.datetime "survey_end_at", default: "2020-12-05 04:47:25"
     t.bigint "section_id", null: false
+    t.datetime "homework_end_at", default: "2021-03-13 09:44:48"
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["section_id"], name: "index_lessons_on_section_id"
   end

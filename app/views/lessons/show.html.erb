@@ -69,7 +69,11 @@
                             <!-- Tab Text -->
                             <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab--4">
                                 <div class="clever-review">
-                                    <%= render "homework", lesson: @lesson %>
+                                    <% if @is_homework %>
+                                        <h4>Домашнее задание по этому уроку больше не выдается</h4>
+                                    <% else %>
+                                        <%= render "homework", lesson: @lesson %>
+                                    <% end %>
                                 </div>
                             </div>
 

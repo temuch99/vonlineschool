@@ -64,6 +64,7 @@ ru:
         survey_duration: "Продолжительность теста"
         survey_size: "Количество вопросов в тесте"
         survey_end_at: "Время окончания тестирования"
+        homework_end_at: "Дедлайн домашки"
       question:
         task: "Вопрос"
         correct_answer: "Правильный ответ"

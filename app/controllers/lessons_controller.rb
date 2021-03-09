@@ -22,6 +22,8 @@ class LessonsController < BaseController
 		@has_attempts = @lesson.attempts > @count_user_attempts
 		@done_attempts = @count_user_attempts > 0
 		add_breadcrumb @lesson.title, '#'
+
+		@is_homework = @lesson.homework_end_at < Time.now
 	end
 
 	private

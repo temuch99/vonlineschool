@@ -2,6 +2,7 @@ class HomeworksController < BaseController
 	before_action :authenticate_user!
 	before_action :set_course
 	before_action :set_lesson
+	before_action :has_time
 	# before_action :has_attempts
 
 	def new
@@ -25,6 +26,10 @@ class HomeworksController < BaseController
 	end
 
 	private
+	def has_time
+		redirect_to [@course, @lesson], notice: "Время для решения домашнего задания закончилось" if @lesson.homework_end_at < Time.now
+	end
+
 	def set_course
 		@course = Course.find(params[:course_id])
 	end
