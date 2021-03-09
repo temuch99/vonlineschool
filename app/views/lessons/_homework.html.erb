@@ -19,7 +19,7 @@
                         <% ha.homework_remarks.each_with_index do |remark, i| %>
                             <div class="col-3">
                                 <a href="<%= remark.remark.url %>" download='<%= "#{current_user.last_name}_#{i+1}_ответ.#{remark.remark.file.extension}" %>'>
-                                    <%= "Ремарка-#{i+1}" %>
+                                    <%= "Проверенное задание-#{i+1}" %>
                                 </a>
                             </div>
                         <% end %>
