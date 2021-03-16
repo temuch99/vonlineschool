@@ -14,6 +14,9 @@
                             <% section.lessons.each do |lesson| %>
                                 <div class="page-content">
                                     <h6>Название занятия: <%= lesson.title %></h6>
+                                    <% if current_user.done_lesson?(lesson) %>
+                                        <h6 style="font-size: 25px;">Занятие пройдено: <span style="color: green;">✔</span></h6>
+                                    <% end %>
                                     <p><b>Описание:</b> <%= lesson.description.html_safe %></p>
                                     <%= button_to "Перейти", [@course, lesson], method: :get, class: "btn btn-info p-2" %>
                                 </div>

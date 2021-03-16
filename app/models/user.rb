@@ -35,4 +35,10 @@ class User < ApplicationRecord
 	def scores
 		self.survey_scores + self.homework_scores
 	end
+
+	def done_lesson?(lesson)
+		ha = self.homework_attempts.where(lesson_id: lesson.id).count > 0
+		sa = self.survey_attempts.where(lesson_id: lesson.id).count > 0
+		ha & sa
+	end
 end

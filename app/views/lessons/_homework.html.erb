@@ -2,6 +2,7 @@
     <!-- About Review -->
     <div class="about-review mb-30">
         <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
+        <h5>Домашнее задание доступно до <%= lesson.homework_end_at.strftime("%F %T") %></h5>
         <div class="border border-left-0 border-right-0 p-3">
             <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
         </div>
