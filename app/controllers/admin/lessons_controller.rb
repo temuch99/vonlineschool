@@ -72,6 +72,7 @@ class Admin::LessonsController < Admin::AdminController
     def lesson_params
       params.require(:lesson).permit(:title, :description, :video_lection, :lection_links, :survey_size, 
                                      :section_id, :survey_duration, :attempts, :homework, :survey_end_at,
-                                     :homework_end_at, text_lections_attributes: [:lection, :id, :_destroy, :title])
+                                     :homework_end_at, :is_offline_survey,
+                                     text_lections_attributes: [:lection, :id, :_destroy, :title])
     end
 end

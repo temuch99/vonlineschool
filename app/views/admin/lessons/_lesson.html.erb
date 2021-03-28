@@ -7,6 +7,9 @@
 	<td><%= lesson.course.title %></td>
 	<td class="btn-group-vertical" role="group">
 		<%= link_to 'Тесты', [:admin, @course, lesson, :questions], class: "btn btn-primary btn-sm" %>
+		<% if lesson.is_offline_survey == true %>
+			<%= link_to 'Очный тест', [:admin, @course, lesson, :offline_survey_attempts], class: "btn btn-success btn-sm" %>
+		<% end %>
 		<%= link_to 'Редактировать', [:edit, :admin, @course, lesson], class: "btn btn-primary btn-sm" %>
 		<%= link_to 'Удалить', [:admin, @course, lesson], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %>
 	</td>

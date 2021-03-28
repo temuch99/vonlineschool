@@ -9,8 +9,13 @@ class User < ApplicationRecord
 	has_many :roles, through: :users_roles
 	has_many :survey_attempts, dependent: :destroy
 	has_many :homework_attempts, dependent: :destroy
+	has_many :offline_survey_attempts, dependent: :destroy
 
 	mount_uploader :avatar, ImageUploader
+
+	def full_name
+		"#{self.first_name} #{self.last_name}"
+	end
 
 	def create_role
 		self.roles << Role.find_by_name(:user)
@@ -32,13 +37,18 @@ class User < ApplicationRecord
 		self.homework_attempts.select("lesson_id").group("lesson_id").maximum("result").values.sum
 	end
 
+	def offline_scores
+		self.offline_survey_attempts.select("lesson_id").group("lesson_id").maximum("result").values.sum
+	end
+
 	def scores
-		self.survey_scores + self.homework_scores
+		self.survey_scores + self.homework_scores + self.offline_scores
 	end
 
 	def done_lesson?(lesson)
 		ha = self.homework_attempts.where(lesson_id: lesson.id).count > 0
 		sa = self.survey_attempts.where(lesson_id: lesson.id).count > 0
-		ha & sa
+		oa = lesson.is_offline_survey ? self.offline_survey_attempts.where(lesson_id: lesson.id).count > 0 : false
+		ha & sa & oa
 	end
 end

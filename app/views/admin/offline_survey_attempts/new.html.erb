@@ -1,0 +1,11 @@
+<h3>Новая оценка очного теста</h3>
+<%= simple_form_for [:admin, @course, @lesson, @attempt], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
+	<%= f.input :user_id, collection: @lesson.users_without_offline_attempt, label_method: :full_name %>
+	<%= f.input :result %>
+
+
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		<%= link_to "Назад", [:admin, @course, @lesson, :offline_survey_attempts], class: "btn btn-danger" %>
+	</div>
+<% end %>

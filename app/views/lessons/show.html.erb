@@ -20,9 +20,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="tab--4" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Д/З</a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" id="tab--5" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="true">Очный тест</a>
-                            </li> -->
+                            </li>
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
@@ -77,6 +77,16 @@
                                 </div>
                             </div>
 
+                            <!-- Tab Text -->
+                            <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab--5">
+                                <div class="clever-review">
+                                    <% if @lesson.is_offline_survey %>
+                                        <h4>Очного теста по этому уроку нет</h4>
+                                    <% else %>
+                                        <%= render "offline_survey", lesson: @lesson %>
+                                    <% end %>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

@@ -24,6 +24,9 @@ class LessonsController < BaseController
 		add_breadcrumb @lesson.title, '#'
 
 		@is_homework = @lesson.homework_end_at < Time.now
+
+		offline_attempts = current_user.offline_survey_attempts.where(lesson_id: @lesson.id)
+		@offline_result = offline_attempts.count > 0 ? offline_attempts.result : 0
 	end
 
 	private

@@ -62,6 +62,9 @@ Rails.application.routes.draw do
 			resources :lessons, except: :show do
 				#questions
 				resources :questions, except: :show
+
+				#offline_survey_attempts
+				resources :offline_survey_attempts, except: :show
 			end
 		end
 

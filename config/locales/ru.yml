@@ -65,6 +65,7 @@ ru:
         survey_size: "Количество вопросов в тесте"
         survey_end_at: "Время окончания тестирования"
         homework_end_at: "Дедлайн домашки"
+        is_offline_survey: "Очный тест"
       question:
         task: "Вопрос"
         correct_answer: "Правильный ответ"

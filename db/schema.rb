@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_214327) do
+ActiveRecord::Schema.define(version: 2021_03_25_195448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,8 +83,19 @@ ActiveRecord::Schema.define(version: 2021_03_09_214327) do
     t.datetime "survey_end_at", default: "2020-12-05 04:47:25"
     t.bigint "section_id", null: false
     t.datetime "homework_end_at", default: "2021-03-13 09:44:48"
+    t.boolean "is_offline_survey", default: false
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["section_id"], name: "index_lessons_on_section_id"
+  end
+
+  create_table "offline_survey_attempts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lesson_id", null: false
+    t.integer "result", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_offline_survey_attempts_on_lesson_id"
+    t.index ["user_id"], name: "index_offline_survey_attempts_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -193,6 +204,8 @@ ActiveRecord::Schema.define(version: 2021_03_09_214327) do
   add_foreign_key "homework_remarks", "homework_attempts"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lessons", "sections"
+  add_foreign_key "offline_survey_attempts", "lessons"
+  add_foreign_key "offline_survey_attempts", "users"
   add_foreign_key "quiz_answers", "quiz_questions"
   add_foreign_key "quiz_questions", "courses"
   add_foreign_key "sections", "courses"
