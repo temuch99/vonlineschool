@@ -48,7 +48,7 @@ class User < ApplicationRecord
 	def done_lesson?(lesson)
 		ha = self.homework_attempts.where(lesson_id: lesson.id).count > 0
 		sa = self.survey_attempts.where(lesson_id: lesson.id).count > 0
-		oa = lesson.is_offline_survey ? self.offline_survey_attempts.where(lesson_id: lesson.id).count > 0 : false
-		ha & sa & oa
+		# oa = lesson.is_offline_survey ? self.offline_survey_attempts.where(lesson_id: lesson.id).count > 0 : false
+		ha & sa #& oa
 	end
 end
