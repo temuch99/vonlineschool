@@ -26,12 +26,12 @@ class LessonsController < BaseController
 		@is_homework = @lesson.homework_end_at < Time.now
 
 		offline_attempts = current_user.offline_survey_attempts.where(lesson_id: @lesson.id)
-		if offline_attempts && offline_attempts.count == 0
-			@offline_result = offline_attempts.result
-		else
-			@offline_result = 0
-		end
-		# @offline_result = offline_attempts.count == 0 ? 0 : offline_attempts.result
+		# if offline_attempts && offline_attempts.count == 0
+		# 	@offline_result = offline_attempts.result
+		# else
+		# 	@offline_result = 0
+		# end
+		@offline_result = offline_attempts.count == 0 ? 0 : offline_attempts.first.result
 	end
 
 	private
