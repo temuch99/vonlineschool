@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_195448) do
+ActiveRecord::Schema.define(version: 2021_04_08_194326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "course_accesses", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_accesses_on_course_id"
+    t.index ["user_id"], name: "index_course_accesses_on_user_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
@@ -64,6 +73,15 @@ ActiveRecord::Schema.define(version: 2021_03_25_195448) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["homework_attempt_id"], name: "index_homework_remarks_on_homework_attempt_id"
+  end
+
+  create_table "lesson_accesses", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_lesson_accesses_on_course_id"
+    t.index ["user_id"], name: "index_lesson_accesses_on_user_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -197,11 +215,15 @@ ActiveRecord::Schema.define(version: 2021_03_25_195448) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "course_accesses", "courses"
+  add_foreign_key "course_accesses", "users"
   add_foreign_key "extension_questions", "disciplines"
   add_foreign_key "homework_answers", "homework_attempts"
   add_foreign_key "homework_attempts", "lessons"
   add_foreign_key "homework_attempts", "users"
   add_foreign_key "homework_remarks", "homework_attempts"
+  add_foreign_key "lesson_accesses", "courses"
+  add_foreign_key "lesson_accesses", "users"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lessons", "sections"
   add_foreign_key "offline_survey_attempts", "lessons"

@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, @course, @access], wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f| %>
+	<%= f.input :user_id, collection: @course.users_without_access, label_method: :full_name %>
+
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+	</div>
+<% end %>

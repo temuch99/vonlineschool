@@ -1,6 +1,7 @@
 class LessonsController < BaseController
-	before_action :authenticate_user!, only: :show
+	before_action :authenticate_user!
 	before_action :set_course, only: [:index, :show]
+	before_action :can_access
 	before_action :set_breadcrumbs, only: [:index, :show]
 	before_action :set_active_header_item, except: :destroy
 
@@ -47,5 +48,10 @@ class LessonsController < BaseController
 		add_breadcrumb "Курсы", [:courses]
 		add_breadcrumb @course.title, [@course]
 		add_breadcrumb 'Занятия', [@course, :lessons]
+	end
+
+	def can_access
+		access = current_user.course_accesses.where(course_id: @course.id).count == 0
+		redirect_to [:courses], notice: "У Вас нет доступа к этому курсу" if access
 	end
 end

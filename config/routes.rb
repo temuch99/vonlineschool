@@ -57,6 +57,9 @@ Rails.application.routes.draw do
 			#banks
 			# get "questions", to: "banks#index"
 
+			#course access
+			get 'all_access', to: 'course_accesses#all_access'
+			resources :course_accesses, only: [:index, :destroy, :create]
 
 			#lessons
 			resources :lessons, except: :show do

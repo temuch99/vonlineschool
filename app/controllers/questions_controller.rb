@@ -1,6 +1,7 @@
 class QuestionsController < BaseController
 	before_action :authenticate_user!
 	before_action :set_course
+	before_action :can_access
 	before_action :set_lesson
 	before_action :set_survey_attempt
 	before_action :set_question, only: [:edit, :update, :destroy]
@@ -75,5 +76,10 @@ class QuestionsController < BaseController
 
 	def survey_answer_params
 		params.require(:survey_answer).permit(:answer)
+	end
+
+	def can_access
+		access = current_user.course_accesses.where(course_id: @course.id).count == 0
+		redirect_to [:courses], notice: "У Вас нет доступа к этому курсу" if access
 	end
 end

@@ -11,6 +11,9 @@ class User < ApplicationRecord
 	has_many :homework_attempts, dependent: :destroy
 	has_many :offline_survey_attempts, dependent: :destroy
 
+	has_many :course_accesses, dependent: :destroy
+	has_many :courses, through: :course_accesses
+
 	mount_uploader :avatar, ImageUploader
 
 	def full_name

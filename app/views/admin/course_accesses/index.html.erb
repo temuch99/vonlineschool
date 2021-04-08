@@ -1,0 +1,22 @@
+<h3 class="float-left">Доступ к курсам</h3>
+
+<%= render 'form' %>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Пользователь</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @accesses.each do |a| %>
+			<tr>
+				<td><%= link_to a.user.full_name, a.user %></td>
+				<td><%= link_to 'Удалить', [:admin, @course, a], class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to "Добавить доступ ко всем пользователям", admin_course_all_access_path(@course), class: "btn btn-success" %>
+<%= paginate @accesses, theme: "twitter-bootstrap-4" %>

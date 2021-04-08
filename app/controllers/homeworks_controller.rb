@@ -1,6 +1,7 @@
 class HomeworksController < BaseController
 	before_action :authenticate_user!
 	before_action :set_course
+	before_action :can_access
 	before_action :set_lesson
 	before_action :has_time
 	# before_action :has_attempts
@@ -44,5 +45,10 @@ class HomeworksController < BaseController
 
 	def has_attempts
 		redirect_to [@course, @lesson] if HomeworkAttempt.where(lesson_id: @lesson.id, user_id: current_user.id).any?
+	end
+
+	def can_access
+		access = current_user.course_accesses.where(course_id: @course.id).count == 0
+		redirect_to [:courses], notice: "У Вас нет доступа к этому курсу" if access
 	end
 end
