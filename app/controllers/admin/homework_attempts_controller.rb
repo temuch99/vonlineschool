@@ -13,8 +13,10 @@ class Admin::HomeworkAttemptsController < Admin::AdminController
 	def update
 		attempt = HomeworkAttempt.find(params[:id])
 
-		params[:homework_attempt][:remark].each do |remark|
-			HomeworkRemark.create(homework_attempt_id: attempt.id, remark: remark)
+		if params[:homework_attempt][:remark]
+			params[:homework_attempt][:remark].each do |remark|
+				HomeworkRemark.create(homework_attempt_id: attempt.id, remark: remark)
+			end
 		end
 
 		if attempt.update(result: params[:homework_attempt][:result], checked: true)

@@ -1,12 +1,16 @@
 <% if lesson.homework? %>
     <!-- About Review -->
-    <div class="about-review mb-30">
-        <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
-        <h5>Домашнее задание доступно до <%= lesson.homework_end_at.strftime("%F %T") %></h5>
-        <div class="border border-left-0 border-right-0 p-3">
-            <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
+    <% if @is_homework %>
+        <h4>Домашнее задание по этому уроку больше не выдается</h4>
+    <% else %>
+        <div class="about-review mb-30">
+            <h4>Здесь можно получить домашнее задание по пройденному материалу</h4>
+            <h5>Домашнее задание доступно до <%= lesson.homework_end_at.strftime("%F %T") %></h5>
+            <div class="border border-left-0 border-right-0 p-3">
+                <%= button_to "Получить домашнее задание", [:new, @course, @lesson, :homework], method: :get, class: "btn btn-info" %>
+            </div>
         </div>
-    </div>
+    <% end %>
     <% if current_user.homework_attempts.where(lesson_id: lesson.id).any? %>
         <div class="clever-ratings d-flex align-items-center mb-30">
             <div class="rating-viewer">
@@ -15,16 +19,18 @@
                 <% ha = current_user.homework_attempts.where(lesson_id: lesson.id).first %>
                 <% if ha.checked %>
                     <span style="font-size: 40px;"><b><%= "#{ha.result}" %></b></span>
-                    <h5>Ремарки к домашнему заданию</h5>
-                    <div class="row">
-                        <% ha.homework_remarks.each_with_index do |remark, i| %>
-                            <div class="col-3">
-                                <a href="<%= remark.remark.url %>" download='<%= "#{current_user.last_name}_#{i+1}_ответ.#{remark.remark.file.extension}" %>'>
-                                    <%= "Проверенное задание-#{i+1}" %>
-                                </a>
-                            </div>
-                        <% end %>
-                    </div>
+                    <% if ha.homework_remarks.count > 0 %>
+                        <h5>Ремарки к домашнему заданию</h5>
+                        <div class="row">
+                            <% ha.homework_remarks.each_with_index do |remark, i| %>
+                                <div class="col-3">
+                                    <a href="<%= remark.remark.url %>" download='<%= "#{current_user.last_name}_#{i+1}_ответ.#{remark.remark.file.extension}" %>'>
+                                        <%= "Проверенное задание-#{i+1}" %>
+                                    </a>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
                 <% else %>
                     <span style="font-size: 20px;"><b>Задание еще не проверено</b></span>
                 <% end %>
