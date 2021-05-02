@@ -8,7 +8,7 @@ class Api::CoursesController < Api::ApiController
 		course = Course.find(params[:id])
 		done_lessons = @user.done_lessons(course.id)
 		lessons = course.lessons.count - done_lessons
-		percent = @user.course_percent(course.id) * 100
+		percent = (@user.course_percent(course.id) * 100).to_i
 		render json: {
 						title: course.title,
 						undone_lessons: lessons,
