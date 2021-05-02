@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<% if !@user.is_admin? %>
+			<% #if !@user.is_admin? %>
 				<canvas id="chart" width="100" height="50"></canvas>
 				<script>
 				$(document).ready(function() {
@@ -43,15 +43,14 @@
 						url: '<%= "#{root_url}api/users/#{@user.id}" %>',
 						contentType: "application/json",
 						success: function(result) {
-							console.log(result)
 							var ctx = document.getElementById('chart');
 							var chart = new Chart(ctx, {
 							    type: 'bar',
 							    data: {
-							        labels: result.map(function(attempt) {return attempt["lesson"] + " " + attempt["date"]}),
+							        labels: result.map(function(course) {return course["course"]}),
 							        datasets: [{
-							            label: 'Результат последних тестирований (указан процент решенных задач)',
-							            data: result.map(function(attempt) {return Math.floor(100*attempt["result"]/attempt["questions"])}),
+							            label: 'Процент пройденных курсов',
+							            data: result.map(function(course) {return course["percent"]}),
 							            backgroundColor: ['rgba(255, 99, 132, 0.2)',
 							            	'rgba(54, 162, 235, 0.2)',
 							                'rgba(255, 206, 86, 0.2)',
@@ -83,9 +82,9 @@
 					});
 				})
 				</script>
-			<% else %>
-				<h4>Администратор сайта</h4>
-			<% end %>
+			<% #else %>
+				<!--<h4>Администратор сайта</h4>-->
+			<% #end %>
 
 		</div>
 	</div>

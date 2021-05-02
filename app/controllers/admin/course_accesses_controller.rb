@@ -2,7 +2,7 @@ class Admin::CourseAccessesController < Admin::AdminController
   before_action :set_course
 
   def index
-    @accesses = CourseAccess.order(id: :desc).page(params[:page])
+    @accesses = @course.course_accesses.order(id: :desc).page(params[:page])
     @access = @course.course_accesses.build
   end
 
@@ -13,7 +13,7 @@ class Admin::CourseAccessesController < Admin::AdminController
       redirect_to [:admin, @course, :course_accesses], notice: "Доступ предоставлен"
     else
       @access = @course.course_accesses.build
-      @accesses = CourseAccess.order(id: :desc).page(params[:page])
+      @accesses = @course.course_accesses.order(id: :desc).page(params[:page])
 
       flash.now[:alert] = "Произошла ошибка"
       render 'index'

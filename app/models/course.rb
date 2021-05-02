@@ -15,6 +15,7 @@ class Course < ApplicationRecord
 	mount_uploader :image, ImageUploader
 
 	def users_without_access
-		User.all - self.users
+		# User.all - self.users
+		User.find_by_sql("SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM course_accesses WHERE course_id=#{self.id});")
 	end
 end

@@ -48,6 +48,11 @@ class User < ApplicationRecord
 		self.survey_scores + self.homework_scores + self.offline_scores
 	end
 
+	def course_percent(course)
+		c = Course.find(course)
+		c.lessons.select {|l| self.done_lesson?(l) }.count.to_f / c.lessons.count
+	end
+
 	def done_lesson?(lesson)
 		ha = self.homework_attempts.where(lesson_id: lesson.id).count > 0
 		sa = self.survey_attempts.where(lesson_id: lesson.id).count > 0
