@@ -11,16 +11,42 @@
 				var chart = new Chart(ctx, {
 				    type: 'pie',
 					data: {
-						labels: ['Пройдено', 'Осталось пройти'],
+						labels: ['Уроков пройдено '+result["done_lessons"], 'Уроков осталось пройти '+result["undone_lessons"]],
 						datasets: [{
 							label: 'Процент прохождения курса',
-							data: [result["done_lessons"], result["undone_lessons"]],
+							data: [result["percent"], result["_percent"]],
 							backgroundColor: [
 								"#63FF84",
 								"#FF6384"
 							]
 						}]
-					}
+					},
+					options: {
+						title: {
+							display: true,
+							text: 'Employee Overview',
+							fontStyle: 'bold',
+							fontSize: 20
+						},
+						tooltips: {
+							callbacks: {
+								label: function(tooltipItem, data) {
+									// get the data label and data value to display
+									// convert the data value to local string so it uses a comma seperated number
+									var value = "";
+									if (tooltipItem.index == 0) {
+										value = 'Пройдено ' + result["percent"] + "% курса";
+									} else {
+										value = "Осталось пройти " + result["_percent"] + "% курса";
+									}
+
+									// return the text to display on the tooltip
+									return value;
+								}
+							}
+						}
+						
+					},
 				});
 			}
 		});
