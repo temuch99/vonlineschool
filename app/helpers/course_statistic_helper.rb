@@ -1,0 +1,2 @@
+module CourseStatisticHelper
+end

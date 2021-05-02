@@ -12,14 +12,18 @@ Rails.application.routes.draw do
 		# unlocks: "users/unlocks"
 	}
 	#user's profile
-	resources :users, only: [:show, :index]
+	resources :users, only: [:show, :index] do
+		resources :course_statistics, only: :show
+	end
 
 	#rating
 	resources :ratings, only: :index
 
 	#API
 	namespace :api do
-		resources :users, only: :show
+		resources :users, only: :show do
+			resources :courses, only: :show
+		end
 
 		resources :disciplines, only: :index do
 			resources :questions, only: :show
