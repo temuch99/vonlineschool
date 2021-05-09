@@ -11,7 +11,7 @@ module Vonlineschool
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    config.hosts << "dry-monkey-34.loca.lt"
+    config.hosts << "vonlineschool.ru"
 
     config.i18n.default_locale = :ru
     config.time_zone = 'Moscow'
