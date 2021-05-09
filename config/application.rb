@@ -12,6 +12,7 @@ module Vonlineschool
     config.load_defaults 6.0
 
     config.hosts << "vonlineschool.ru"
+    config.hosts << "www.vonlineschool.ru"
 
     config.i18n.default_locale = :ru
     config.time_zone = 'Moscow'
