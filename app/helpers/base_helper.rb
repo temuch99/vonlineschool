@@ -8,7 +8,7 @@ module BaseHelper
 			ratings: { name: "Рейтинг", path: ratings_path }
 		}
 
-		if user_signed_in? and current_user.roles.exists?(name: :admin)
+		if user_signed_in? and current_user.roles.exists?(name: [:admin, :teacher])
 			@header[:admin] = { name: 'Админка', path: admin_root_path }
 		end
 	end

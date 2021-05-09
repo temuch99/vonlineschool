@@ -13,12 +13,16 @@ class Admin::AdminController < ApplicationController
 			courses: { name: 'Курсы', path: admin_courses_path },
 			homeworks: { name: "Д/З", path: admin_homework_attempts_path },
 			surveys: { name: "Результаты тестов", path: admin_survey_attempts_path },
-			disciplines: { name: "Дисциплины", path: admin_disciplines_path }
+			disciplines: { name: "Дисциплины", path: admin_disciplines_path },
+			# users: { name: "Привилегии", path: admin_roles_path },
 			# banks: { name: "Банк заданий", path: admin }
 		}
+		if current_user.is_admin?
+			@header[:users] = { name: "Привилегии", path: admin_roles_path }
+		end
 	end
 
 	def admin_access
-		redirect_to root_url, notice: "Вы не являетесь администратором данного сайта" if !current_user.roles.exists?(name: :admin)
+		redirect_to root_url, notice: "Вы не являетесь администратором данного сайта" if !current_user.roles.exists?(name: [:admin, :teacher])
 	end
 end

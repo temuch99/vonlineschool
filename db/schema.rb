@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_194326) do
+ActiveRecord::Schema.define(version: 2021_05_08_161125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,15 @@ ActiveRecord::Schema.define(version: 2021_04_08_194326) do
     t.index ["user_id"], name: "index_survey_attempts_on_user_id"
   end
 
+  create_table "teachers_courses", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_teachers_courses_on_course_id"
+    t.index ["user_id"], name: "index_teachers_courses_on_user_id"
+  end
+
   create_table "text_lections", force: :cascade do |t|
     t.bigint "lesson_id", null: false
     t.string "lection"
@@ -188,9 +197,6 @@ ActiveRecord::Schema.define(version: 2021_04_08_194326) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -203,7 +209,16 @@ ActiveRecord::Schema.define(version: 2021_04_08_194326) do
     t.string "avatar"
     t.text "description"
     t.string "parent_email"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "encrypted_password"
+    t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "nickname"
+    t.string "password_digest"
+    t.boolean "activated", default: false
+    t.string "activation_token"
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
   create_table "users_roles", force: :cascade do |t|

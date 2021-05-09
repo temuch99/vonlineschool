@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -46,6 +46,10 @@ gem 'bootstrap4-kaminari-views'
 
 gem 'draper'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-vkontakte'
+gem 'omniauth-rails_csrf_protection'
+
 gem 'cancan'
 gem 'state_machines-activerecord'
 
@@ -66,6 +70,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-core'
+  gem 'rspec-expectations' 
+  gem 'rspec-mocks' 
+  gem 'rspec-rails' 
+  gem 'rspec-support'
 end
 
 group :development do

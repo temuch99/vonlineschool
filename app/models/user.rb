@@ -2,17 +2,24 @@ class User < ApplicationRecord
 	before_create :create_role
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :confirmable, :lockable, :recoverable, 
-	devise :database_authenticatable, :registerable, 
-	     :rememberable, :validatable, :trackable
+	# devise :database_authenticatable, :registerable, 
+	#      :rememberable, :validatable, :trackable :database_authenticatable, :rememberable, 
+	devise :trackable, :omniauthable, omniauth_providers: %i[vkontakte]
+
+	has_secure_password
 
 	has_many :users_roles, dependent: :destroy
 	has_many :roles, through: :users_roles
+
 	has_many :survey_attempts, dependent: :destroy
 	has_many :homework_attempts, dependent: :destroy
 	has_many :offline_survey_attempts, dependent: :destroy
 
 	has_many :course_accesses, dependent: :destroy
 	has_many :courses, through: :course_accesses
+
+	has_many :teachers_courses, dependent: :destroy
+	has_many :teacher_courses, through: :teachers_courses
 
 	mount_uploader :avatar, ImageUploader
 
@@ -63,5 +70,18 @@ class User < ApplicationRecord
 		sa = self.survey_attempts.where(lesson_id: lesson.id).count > 0
 		# oa = lesson.is_offline_survey ? self.offline_survey_attempts.where(lesson_id: lesson.id).count > 0 : false
 		ha & sa #& oa
+	end
+
+	def self.from_omniauth(auth)
+		User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.first_name = auth.info.first_name
+			user.last_name = auth.info.last_name
+			user.provider = auth.provider
+			user.uid = auth.uid
+			user.password = "password"
+			user.password_confirmation = "password"
+			user.activation_token = Digest::SHA1.hexdigest(SecureRandom.urlsafe_base64)
+			# user.avatar = auth.info.photo_400_orig
+		end
 	end
 end

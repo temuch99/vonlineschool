@@ -1,0 +1,26 @@
+<h3 class="float-left">Преподаватели курса</h3>
+
+<%= simple_form_for(:teachers, url: [:admin, @course, :teacher_courses], wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f| %>
+	<%= f.input :ids, collection: Role.find_by(name: :teacher).users - @teachers, label_method: :full_name %>
+
+	<div class="button-box float-right">
+		<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+	</div>
+<% end %>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Преподаватель</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @teachers.each do |t| %>
+			<tr>
+				<td><%= link_to t.full_name, t %></td>
+				<td><%= link_to 'Удалить', admin_course_teacher_course_path(@course, t), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Вы уверены?"} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -8,6 +8,9 @@ class Course < ApplicationRecord
 	has_many :course_accesses, dependent: :destroy
 	has_many :users, through: :course_accesses
 
+	has_many :teachers_courses, dependent: :destroy
+	has_many :teachers, through: :teachers_courses, foreign_key: :user_id
+
 	validates :title, presence: true
 
 	accepts_nested_attributes_for :sections, reject_if: :all_blank, allow_destroy: true

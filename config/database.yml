@@ -14,7 +14,7 @@ test:
   pool: 5
   timeout: 5000
   username: temuch
-  password:
+  password: bander04log
 
 production:
   adapter: postgresql

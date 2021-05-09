@@ -4,15 +4,14 @@ Rails.application.routes.draw do
 	get '/contacts', to: "static#contacts"
 
 	#users
-	devise_for :users, controllers: {
-		sessions: 'users/sessions',
-		registrations: 'users/registrations',
-		passwords: 'users/passwords'
-		# confirmations: "users/confirmations",
-		# unlocks: "users/unlocks"
-	}
+	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+	devise_scope :user do
+		get 'sign_in', :to => 'devise/sessions#new' , :as => :new_user_session
+		get 'sign_out', :to => 'devise/sessions#destroy' , :as => :destroy_user_session
+	end
+	match '/users/:id/finish_signup/:token' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 	#user's profile
-	resources :users, only: [:show, :index] do
+	resources :users do
 		resources :course_statistics, only: :show
 	end
 
@@ -65,6 +64,9 @@ Rails.application.routes.draw do
 			get 'all_access', to: 'course_accesses#all_access'
 			resources :course_accesses, only: [:index, :destroy, :create]
 
+			#course teachers
+			resources :teacher_courses, only: [:index, :create, :destroy]
+
 			#lessons
 			resources :lessons, except: :show do
 				#questions
@@ -80,6 +82,14 @@ Rails.application.routes.draw do
 
 		#surveys
 		resources :survey_attempts, only: [:index, :destroy]
+
+		#roles
+		post 'add_admin', to: 'roles#add_admin'
+		post 'add_teacher', to: 'roles#add_teacher'
+
+		post 'remove_admin', to: 'roles#remove_admin'
+		post 'remove_teacher', to: 'roles#remove_teacher'
+		resources :roles, only: :index
 
 		#api for sortable lessons
 		namespace :api do

@@ -1,0 +1,21 @@
+<%= simple_form_for(:session, method: :post, url: users_path, class: "form-signin") do |f| %>
+  <div class="text-center mb-4">
+     <h2>Войти</h2>
+  </div>
+  <div class="form-label-group">
+    <%= f.input :nickname,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+  </div>
+  <div class="form-label-group">
+    <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Войти", class: "btn btn-info" %>
+    <%= link_to "Войти через ВК", user_vkontakte_omniauth_authorize_path, method: :post, class: "btn clever-btn" %>
+  </div>
+<% end %>

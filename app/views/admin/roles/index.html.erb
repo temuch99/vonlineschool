@@ -1,0 +1,51 @@
+<h3 class="float-left">Админы сайта</h3>
+
+<table class="table table-striped">
+	<%= simple_form_for(:users, url: admin_add_admin_path, method: :post, wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f| %>
+		<%= f.input :user_id, collection: users_without_admin_privs, label_method: :full_name %>
+
+		<div class="button-box float-right">
+			<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		</div>
+	<% end %>
+	<thead>
+		<tr>
+			<th>Пользователь</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @admins.each do |a| %>
+			<tr>
+				<td><%= link_to a.full_name, a %></td>
+				<td><%= link_to 'Удалить', admin_remove_admin_path(user_id: a.id), class: "btn btn-danger btn-sm", method: :post, data: {confirm: "Вы уверены?"} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h3 class="float-left">Преподаватели сайта</h3>
+
+<table class="table table-striped">
+	<%= simple_form_for(:users, url: admin_add_teacher_path, method: :post, wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f| %>
+		<%= f.input :user_id, collection: users_without_teacher_privs, label_method: :full_name %>
+
+		<div class="button-box float-right">
+			<%= f.submit "Сохранить", class: 'btn btn-primary' %>
+		</div>
+	<% end %>
+	<thead>
+		<tr>
+			<th>Пользователь</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @teachers.each do |a| %>
+			<tr>
+				<td><%= link_to a.full_name, a %></td>
+				<td><%= link_to 'Удалить', admin_remove_teacher_path(user_id: a.id), class: "btn btn-danger btn-sm", method: :post, data: {confirm: "Вы уверены?"} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

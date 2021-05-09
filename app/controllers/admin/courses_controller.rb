@@ -2,6 +2,7 @@ class Admin::CoursesController < Admin::AdminController
   add_breadcrumb "Курсы", :admin_courses_path
 
   before_action :set_course, only: [:edit, :update, :destroy]
+  before_action :can_course_access, except: :index
 
   def index
     @courses = Course.order(id: :desc).page(params[:page])
@@ -66,5 +67,11 @@ class Admin::CoursesController < Admin::AdminController
       params.require(:course).permit(:title, :description, :image,
                                     sections_attributes: [:title, :description, 
                                       :position, :_destroy, :id])
+    end
+
+    def can_course_access
+      unless my_courses.include?(@course)
+        redirect_to admin_courses_path, notice: "У вас нет доступа"
+      end
     end
 end

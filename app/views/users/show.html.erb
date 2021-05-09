@@ -5,10 +5,7 @@
 				<div class="col-12 col-sm-9">
 					<h2><%= "#{@user.first_name} #{@user.last_name}" %></h2>
 					<p>
-						<strong>Email: <%= @user.email %>. </strong>
-					</p>
-					<p>
-						<strong>Email родителя: <%= @user.parent_email %>. </strong>
+						<strong>ФИО: <%= @user.full_name %>. </strong>
 					</p>
 					<p>
 						<strong>Дата регистрации: <%= @user.created_at.strftime("%F %T") %></strong>
@@ -18,8 +15,8 @@
 					</p>
 					<div class="btn-group">
 						<% if can? :manage, @user %>
-	                        <%= button_to "Редактировать профиль", [:edit, @user, :registration], method: :get, class: "btn btn-sm btn-primary mr-3" %>
-	                        <%= button_to "Удалить профиль", [@user, :registration], params: {id: @user.id}, method: :delete, class: "btn btn-sm btn-danger", data: {confirm: "Вы уверены?"} %>
+	                        <%= button_to "Редактировать профиль", [:edit, @user], method: :get, class: "btn btn-sm btn-primary mr-3" %>
+	                        <% #button_to "Удалить профиль", [@user], params: {id: @user.id}, method: :delete, class: "btn btn-sm btn-danger", data: {confirm: "Вы уверены?"} %>
                         <% end %>
                     </div>
 				</div>
