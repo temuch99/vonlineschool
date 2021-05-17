@@ -1,5 +1,7 @@
 class Admin::TeacherCoursesController < Admin::AdminController
   before_action :set_course
+  before_action :can_teacher_course_access
+
   def index
     @teachers = @course.teachers
   end
@@ -37,5 +39,19 @@ class Admin::TeacherCoursesController < Admin::AdminController
 
   def teacher_params
     params.require(:teachers).permit(:ids)
+  end
+
+  def my_courses
+    if current_user.roles.exists?(name: :admin)
+      Course.all
+    else
+      current_user.teacher_courses
+    end
+  end
+
+  def can_teacher_course_access
+    unless my_courses.include?(@course)
+      redirect_to admin_courses_path, notice: "У вас нет доступа"
+    end
   end
 end

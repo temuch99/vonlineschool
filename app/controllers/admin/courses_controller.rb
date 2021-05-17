@@ -2,7 +2,7 @@ class Admin::CoursesController < Admin::AdminController
   add_breadcrumb "Курсы", :admin_courses_path
 
   before_action :set_course, only: [:edit, :update, :destroy]
-  before_action :can_course_access, except: :index
+  before_action :can_course_access, only: [:edit, :update, :destroy]
 
   def index
     @courses = Course.order(id: :desc).page(params[:page])
@@ -19,6 +19,7 @@ class Admin::CoursesController < Admin::AdminController
     @course = Course.new(course_params)
 
     if @course.save
+      @course.teachers << current_user
       redirect_to admin_courses_path, notice: "Курс создан"
     else
       add_breadcrumb "Новый курс", :new_admin_course_path
@@ -67,6 +68,14 @@ class Admin::CoursesController < Admin::AdminController
       params.require(:course).permit(:title, :description, :image,
                                     sections_attributes: [:title, :description, 
                                       :position, :_destroy, :id])
+    end
+
+    def my_courses
+      if current_user.roles.exists?(name: :admin)
+        Course.all
+      else
+        current_user.teacher_courses
+      end
     end
 
     def can_course_access
