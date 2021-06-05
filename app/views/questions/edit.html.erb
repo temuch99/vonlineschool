@@ -63,7 +63,7 @@
                 return a;
             return "0"+a;
         }
-        setInterval(update_clock, 1000);
+        let timer_id = setInterval(update_clock, 1000);
         setTimeout(send_data, <%= @timer*1000 %>);
     })
 </script>
